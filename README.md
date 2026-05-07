@@ -127,3 +127,90 @@ Assets/
 `config.json`은 `.gitignore`에 포함되어 GitHub에 업로드되지 않습니다.
 
 Whisper는 로컬 모델을 사용하므로 별도의 API Key가 필요하지 않습니다.
+
+---
+
+# Whisper 모델 파일
+
+Whisper 로컬 모델 파일(`*.bin`)은 GitHub 용량 제한으로 인해 저장소에 포함되지 않습니다.
+
+직접 다운로드 후 아래 위치에 추가해야 합니다.
+
+```text
+Assets/StreamingAssets/
+```
+
+예시:
+
+```text
+Assets/StreamingAssets/ggml-base.bin
+```
+
+---
+
+# 실행 방법
+
+1. Unity Hub에서 프로젝트 열기
+2. Unity 2022.3.62f3 사용 확인
+3. `config.json` 생성 후 Gemini API Key 입력
+4. Whisper 모델 파일 추가
+5. 필요한 패키지 설치 확인
+    - Newtonsoft.Json
+    - Cinemachine
+    - TextMeshPro
+6. 메인 씬 실행
+
+---
+
+# 현재 개발 진행 상태
+
+## 완료
+- 3인칭 이동 시스템
+- STT + LLM 대화 구조
+- 음성 기반 스킬 구조
+- 단일 명령 스킬 실행
+- 실패 처리 / 테스트 UX
+- 디버그 스킬 입력
+- API Key 분리 구조
+
+---
+
+## 진행 중
+- 스킬 명령 인식률 개선
+- alias 시스템
+- 정규화 처리
+- Levenshtein 보정
+
+---
+
+## 추가 예정
+- 속성 선택 UI
+- 속성별 스킬 확장
+- 침묵 / 쿨타임 시스템
+- 스킬 이펙트 개선
+- GameManager 역할 분리
+- 스킬 구조 리팩토링
+
+---
+
+# GitHub 업로드 제외 대상
+
+다음 파일/폴더는 GitHub에 업로드하지 않습니다.
+
+```text
+Library/
+Temp/
+Logs/
+UserSettings/
+.vscode/
+Recordings/
+config.json
+Assets/StreamingAssets/*.bin
+```
+
+---
+
+# 프로젝트 목표
+
+STT와 LLM을 활용한
+실시간 음성 상호작용 게임 구조 연구 및 프로토타입 제작을 목표로 합니다.
