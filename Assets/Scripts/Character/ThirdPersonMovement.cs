@@ -4,8 +4,8 @@ using UnityEngine;
 public class ThirdPersonMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 4f;
-    [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float rotationSpeed = 1f;
     [SerializeField] private float gravity = -9.81f;
 
     [Header("References")]

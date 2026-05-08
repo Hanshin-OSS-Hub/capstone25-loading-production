@@ -353,7 +353,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 339358102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aad60804a096d94b8f46b8740534c90, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fae35a9c97c2c54db41884fe559420d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
@@ -362,7 +362,7 @@ MonoBehaviour:
   controller: {fileID: 386930968}
   cameraTransform: {fileID: 963194228}
   animator: {fileID: 386930967}
-  dashRunner: {fileID: 0}
+  dashRunner: {fileID: 386930971}
 --- !u!114 &386930970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,10 +372,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 339358102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 109dd2bf694e9b44b9056645cbcf860c, type: 3}
+  m_Script: {fileID: 11500000, guid: 00b2ff715b1b8524b8f3db2f492de967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caster: {fileID: 1043801412}
+  caster: {fileID: 386930964}
   forwardReference: {fileID: 386930964}
   bladeProjectilePrefab: {fileID: 3195961423655719549, guid: fe4de0262df7feb4e893057968db849c, type: 3}
   bladeCount: 4
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 339358102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 995b54e2479b0e44d9a79fe1170d437c, type: 3}
+  m_Script: {fileID: 11500000, guid: ed16fa239f0af7049a947caba2ee02af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 386930968}
@@ -1032,11 +1032,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!4 &1043801412 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3498498511392652934, guid: 66f01a8db88f9644baed659d1f91cdca, type: 3}
-  m_PrefabInstance: {fileID: 1274873814}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1075391152
 GameObject:
   m_ObjectHideFlags: 3
@@ -1591,7 +1586,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc5e8da60561534b8a12ff1ff1d6887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiKey: AIzaSyDZxovxAxIldC_2IPDSUi9thrT1C-GXusI
   url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent
   personaProvider: {fileID: 1594656723}
 --- !u!114 &1594656720
@@ -1603,7 +1597,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1594656715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cc125d132734bd40beae69d9b4c56a3, type: 3}
+  m_Script: {fileID: 11500000, guid: dab4314b004d31c4e8762f0d3ceae662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   whisperManager: {fileID: 1883923203}
@@ -1630,7 +1624,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1594656715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2728c0dd6d3c0f54fad06dff08253ef1, type: 3}
+  m_Script: {fileID: 11500000, guid: e648dc343d13c0e4fb05ea3d3b2657c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inputHandler: {fileID: 1594656718}
@@ -1662,7 +1656,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1594656715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f765e22865fcdd48b27978c33f120b9, type: 3}
+  m_Script: {fileID: 11500000, guid: d4f8a01613968ae4381f520579c3e012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   recorder: {fileID: 1594656721}
@@ -1676,7 +1670,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1594656715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efbf0ab0b075d574e9b1e4afd430c22e, type: 3}
+  m_Script: {fileID: 11500000, guid: dfdfcbc3cdf3d8042a354331ae20fa11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inputHandler: {fileID: 1594656727}
@@ -1694,7 +1688,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1594656715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e328d4bb65f4f724b8094fb39750004d, type: 3}
+  m_Script: {fileID: 11500000, guid: 317edab792212044fad6cd7db0636794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1594656727
@@ -1706,7 +1700,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1594656715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d6685a5ed7ecff4ebc5d1251712e54d, type: 3}
+  m_Script: {fileID: 11500000, guid: 15f019a41a0a5af429d2b423e5884920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillKey: 114
@@ -1719,7 +1713,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1594656715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5ef8232c3d156440b3f012b457158e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 029ee1ad1d06af24b8805cff684258c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillExecutor: {fileID: 386930970}
