@@ -20,6 +20,7 @@ public class SkillCoordinator : MonoBehaviour
         {
             inputHandler.OnSkillPressed += HandleSkillPressed;
             inputHandler.OnSkillReleased += HandleSkillReleased;
+            inputHandler.OnSkillCanceled += HandleSkillCanceled;
         }
     }
 
@@ -29,6 +30,7 @@ public class SkillCoordinator : MonoBehaviour
         {
             inputHandler.OnSkillPressed -= HandleSkillPressed;
             inputHandler.OnSkillReleased -= HandleSkillReleased;
+            inputHandler.OnSkillCanceled -= HandleSkillCanceled;
         }
     }
 
@@ -108,7 +110,7 @@ public class SkillCoordinator : MonoBehaviour
 
             if (!sttResult.IsSuccess)
             {
-                ProjectLogger.Error($"스킬 STT 실패: {sttResult.ErrorMessage}");
+                ProjectLogger.Warning($"스킬 STT 실패: {sttResult.ErrorMessage}");
 
                 if (playerBubble != null)
                     playerBubble.SetText(sttResult.ErrorMessage);
@@ -161,5 +163,16 @@ public class SkillCoordinator : MonoBehaviour
         {
             _isProcessing = false;
         }
+    }
+
+    private void HandleSkillCanceled()
+    {
+        ProjectLogger.Warning("스킬 입력이 너무 짧아 취소되었습니다.");
+
+        if (playerBubble != null)
+            playerBubble.SetText("조금 더 길게 말해주세요.");
+
+        if (npcBubble != null)
+            npcBubble.SetText("소리가 닿기 전에 사라졌습니다.");
     }
 }

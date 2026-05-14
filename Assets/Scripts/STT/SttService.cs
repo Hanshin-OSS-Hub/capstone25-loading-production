@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -18,7 +19,19 @@ public class SttService : MonoBehaviour
             );
         }
 
-        return recorder.StartRecording();
+        try
+        {
+            return recorder.StartRecording();
+        }
+        catch (Exception e)
+        {
+            ProjectLogger.Error($"녹음 시작 중 예외 발생: {e.Message}");
+
+            return OperationResult<bool>.Fail(
+                ConversationErrorType.STTFailed,
+                "녹음을 시작하지 못했습니다."
+            );
+        }
     }
 
     public async Task<OperationResult<string>> StopRecordingAndTranscribeAsync()
@@ -32,26 +45,38 @@ public class SttService : MonoBehaviour
             );
         }
 
-        var stopResult = recorder.StopRecording();
-
-        if (!stopResult.IsSuccess)
+        try
         {
+            var stopResult = recorder.StopRecording();
+
+            if (!stopResult.IsSuccess)
+            {
+                return OperationResult<string>.Fail(
+                    stopResult.ErrorType,
+                    stopResult.ErrorMessage
+                );
+            }
+
+            var sttResult = await transcriber.TranscribeAsync(stopResult.Data);
+
+            if (!sttResult.IsSuccess)
+            {
+                return OperationResult<string>.Fail(
+                    sttResult.ErrorType,
+                    sttResult.ErrorMessage
+                );
+            }
+
+            return OperationResult<string>.Success(sttResult.Data);
+        }
+        catch (Exception e)
+        {
+            ProjectLogger.Error($"STT 서비스 처리 중 예외 발생: {e.Message}");
+
             return OperationResult<string>.Fail(
-                stopResult.ErrorType,
-                stopResult.ErrorMessage
+                ConversationErrorType.STTFailed,
+                "음성 인식 처리 중 오류가 발생했습니다."
             );
         }
-
-        var sttResult = await transcriber.TranscribeAsync(stopResult.Data);
-
-        if (!sttResult.IsSuccess)
-        {
-            return OperationResult<string>.Fail(
-                sttResult.ErrorType,
-                sttResult.ErrorMessage
-            );
-        }
-
-        return OperationResult<string>.Success(sttResult.Data);
     }
 }
