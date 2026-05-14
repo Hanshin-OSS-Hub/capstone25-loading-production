@@ -137,7 +137,8 @@ public class SkillCoordinator : MonoBehaviour
                 return;
             }
 
-            ProjectLogger.UI($"스킬 판정 성공: {skillId}");
+            string skillName = SkillNameProvider.GetKoreanName(skillId);
+            ProjectLogger.UI($"스킬 판정 성공: {skillName}");
 
             SkillCastResult castResult = skillExecutor.Execute(skillId);
 

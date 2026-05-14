@@ -93,8 +93,8 @@ public class SkillExecutor : MonoBehaviour
             }
         }
 
-        ProjectLogger.UI("스킬 실행: Blade");
-        return SkillCastResult.Success("칼날 스킬이 실행되었습니다.");
+        ProjectLogger.UI($"스킬 실행: {SkillNameProvider.GetKoreanName(SkillId.Blade)}");
+        return SkillCastResult.Success(SkillNameProvider.GetMuninnCastMessage(SkillId.Blade));
     }
 
     private SkillCastResult ExecuteStorm()
@@ -113,8 +113,8 @@ public class SkillExecutor : MonoBehaviour
         Vector3 spawnPosition = caster.position + forward * stormSpawnDistance;
         Instantiate(stormPrefab, spawnPosition, Quaternion.identity);
 
-        ProjectLogger.UI("스킬 실행: Storm");
-        return SkillCastResult.Success("폭풍 스킬이 실행되었습니다.");
+        ProjectLogger.UI($"스킬 실행: {SkillNameProvider.GetKoreanName(SkillId.Storm)}");
+        return SkillCastResult.Success(SkillNameProvider.GetMuninnCastMessage(SkillId.Storm));
     }
 
     private SkillCastResult ExecuteBarrier()
@@ -135,8 +135,8 @@ public class SkillExecutor : MonoBehaviour
 
         Instantiate(barrierPrefab, spawnPosition, rotation);
 
-        ProjectLogger.UI("스킬 실행: Barrier");
-        return SkillCastResult.Success("장벽 스킬이 실행되었습니다.");
+        ProjectLogger.UI($"스킬 실행: {SkillNameProvider.GetKoreanName(SkillId.Barrier)}");
+        return SkillCastResult.Success(SkillNameProvider.GetMuninnCastMessage(SkillId.Barrier));
     }
 
     private SkillCastResult ExecuteDash()
@@ -160,7 +160,7 @@ public class SkillExecutor : MonoBehaviour
             dashSpeedBuffMultiplier
         );
 
-        ProjectLogger.UI("스킬 실행: Dash");
-        return SkillCastResult.Success("돌진 스킬이 실행되었습니다.");
+        ProjectLogger.UI($"스킬 실행: {SkillNameProvider.GetKoreanName(SkillId.Dash)}");
+        return SkillCastResult.Success(SkillNameProvider.GetMuninnCastMessage(SkillId.Dash));
     }
 }
