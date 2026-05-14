@@ -65,8 +65,9 @@ public class SkillExecutor : MonoBehaviour
     {
         if (bladeProjectilePrefab == null)
         {
-            ProjectLogger.Warning("Blade 프리팹이 연결되지 않았습니다.");
-            return SkillCastResult.Fail("칼날 프리팹이 연결되지 않았습니다.");
+            string skillName = SkillNameProvider.GetKoreanName(SkillId.Blade);
+            ProjectLogger.Warning($"{skillName} 프리팹이 연결되지 않았습니다.");
+            return SkillCastResult.Fail($"{skillName} 프리팹이 연결되지 않았습니다.");
         }
 
         Transform dirRef = forwardReference != null ? forwardReference : caster;
@@ -101,8 +102,9 @@ public class SkillExecutor : MonoBehaviour
     {
         if (stormPrefab == null)
         {
-            ProjectLogger.Warning("Storm 프리팹이 연결되지 않았습니다.");
-            return SkillCastResult.Fail("폭풍 프리팹이 연결되지 않았습니다.");
+            string skillName = SkillNameProvider.GetKoreanName(SkillId.Storm);
+            ProjectLogger.Warning($"{skillName} 프리팹이 연결되지 않았습니다.");
+            return SkillCastResult.Fail($"{skillName} 프리팹이 연결되지 않았습니다.");
         }
 
         Transform dirRef = forwardReference != null ? forwardReference : caster;
@@ -121,8 +123,9 @@ public class SkillExecutor : MonoBehaviour
     {
         if (barrierPrefab == null)
         {
-            ProjectLogger.Warning("Barrier 프리팹이 연결되지 않았습니다.");
-            return SkillCastResult.Fail("장벽 프리팹이 연결되지 않았습니다.");
+            string skillName = SkillNameProvider.GetKoreanName(SkillId.Barrier);
+            ProjectLogger.Warning($"{skillName} 프리팹이 연결되지 않았습니다.");
+            return SkillCastResult.Fail($"{skillName} 프리팹이 연결되지 않았습니다.");
         }
 
         Transform dirRef = forwardReference != null ? forwardReference : caster;

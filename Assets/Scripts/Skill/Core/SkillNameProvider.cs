@@ -26,7 +26,7 @@ public static class SkillNameProvider
         switch (skillId)
         {
             case SkillId.Blade:
-                return "단검이 하늘을 가른다.";
+                return "단검이 허공을 가른다.";
 
             case SkillId.Storm:
                 return "바람이 흐른다.";
