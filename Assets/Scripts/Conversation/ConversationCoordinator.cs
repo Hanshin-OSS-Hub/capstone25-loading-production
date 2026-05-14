@@ -20,6 +20,7 @@ public class ConversationCoordinator : MonoBehaviour
         {
             inputHandler.OnTalkPressed += HandleTalkPressed;
             inputHandler.OnTalkReleased += HandleTalkReleased;
+            inputHandler.OnTalkCanceled += HandleTalkCanceled;
         }
     }
 
@@ -29,6 +30,7 @@ public class ConversationCoordinator : MonoBehaviour
         {
             inputHandler.OnTalkPressed -= HandleTalkPressed;
             inputHandler.OnTalkReleased -= HandleTalkReleased;
+            inputHandler.OnTalkCanceled -= HandleTalkCanceled;
         }
     }
 
@@ -182,5 +184,18 @@ public class ConversationCoordinator : MonoBehaviour
         {
             _isProcessing = false;
         }
+    }
+
+    private void HandleTalkCanceled()
+    {
+        ProjectLogger.Warning("대화 입력이 너무 짧아 취소되었습니다.");
+
+        SetState(ConversationState.Idle);
+
+        if (playerBubble != null)
+            playerBubble.SetText("조금 더 길게 말해주세요.");
+
+        if (npcBubble != null)
+            npcBubble.SetText("소리가 닿기 전에 사라졌습니다.");
     }
 }
