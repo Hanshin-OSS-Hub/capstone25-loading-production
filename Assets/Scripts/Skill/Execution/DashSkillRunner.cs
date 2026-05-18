@@ -4,7 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class DashSkillRunner : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] private CharacterController controller;
+
+    [Header("Dash Visual")]
+    [SerializeField] private TrailRenderer dashTrail;
+    [SerializeField] private ParticleSystem dashStartEffect;
+    [SerializeField] private ParticleSystem dashEndEffect;
 
     private bool _isDashing;
     private float _speedBuffMultiplier = 1f;
@@ -13,12 +19,38 @@ public class DashSkillRunner : MonoBehaviour
     private void Reset()
     {
         controller = GetComponent<CharacterController>();
+        dashTrail = GetComponentInChildren<TrailRenderer>();
     }
 
-    public void RunDash(Vector3 direction, float distance, float duration, float buffDuration, float buffMultiplier)
+    private void Awake()
+    {
+        if (controller == null)
+            controller = GetComponent<CharacterController>();
+
+        DisableDashVisuals();
+    }
+
+    public void RunDash(
+        Vector3 direction,
+        float distance,
+        float duration,
+        float buffDuration,
+        float buffMultiplier)
     {
         if (_isDashing)
             return;
+
+        if (controller == null)
+        {
+            ProjectLogger.Warning("DashSkillRunner: CharacterController가 연결되지 않았습니다.");
+            return;
+        }
+
+        if (direction.sqrMagnitude <= 0.001f)
+        {
+            ProjectLogger.Warning("DashSkillRunner: 돌진 방향이 올바르지 않습니다.");
+            return;
+        }
 
         StartCoroutine(DashRoutine(direction, distance, duration));
 
@@ -32,15 +64,28 @@ public class DashSkillRunner : MonoBehaviour
     {
         _isDashing = true;
 
+        Vector3 dashDirection = direction.normalized;
+        float safeDuration = Mathf.Max(duration, 0.01f);
         float elapsed = 0f;
-        float speed = distance / duration;
+        float speed = distance / safeDuration;
 
-        while (elapsed < duration)
+        EnableDashVisuals();
+
+        if (dashStartEffect != null)
+            dashStartEffect.Play();
+
+        while (elapsed < safeDuration)
         {
-            controller.Move(direction.normalized * speed * Time.deltaTime);
+            controller.Move(dashDirection * speed * Time.deltaTime);
+
             elapsed += Time.deltaTime;
             yield return null;
         }
+
+        if (dashEndEffect != null)
+            dashEndEffect.Play();
+
+        DisableDashVisuals();
 
         _isDashing = false;
     }
@@ -48,8 +93,30 @@ public class DashSkillRunner : MonoBehaviour
     private IEnumerator SpeedBuffRoutine(float duration, float multiplier)
     {
         _speedBuffMultiplier = multiplier;
+
         yield return new WaitForSeconds(duration);
+
         _speedBuffMultiplier = 1f;
+        _speedBuffRoutine = null;
+    }
+
+    private void EnableDashVisuals()
+    {
+        if (dashTrail != null)
+        {
+            dashTrail.Clear();
+            dashTrail.enabled = true;
+            dashTrail.emitting = true;
+        }
+    }
+
+    private void DisableDashVisuals()
+    {
+        if (dashTrail != null)
+        {
+            dashTrail.emitting = false;
+            dashTrail.enabled = false;
+        }
     }
 
     public float GetSpeedBuffMultiplier()
