@@ -11,6 +11,7 @@ public class DashSkillRunner : MonoBehaviour
     [SerializeField] private TrailRenderer dashTrail;
     [SerializeField] private ParticleSystem dashStartEffect;
     [SerializeField] private ParticleSystem dashEndEffect;
+    [SerializeField] private AudioSource dashAudio;
 
     private bool _isDashing;
     private float _speedBuffMultiplier = 1f;
@@ -86,6 +87,9 @@ public class DashSkillRunner : MonoBehaviour
             dashEndEffect.Play();
 
         DisableDashVisuals();
+
+        if (dashAudio != null)
+            dashAudio.Play();
 
         _isDashing = false;
     }
