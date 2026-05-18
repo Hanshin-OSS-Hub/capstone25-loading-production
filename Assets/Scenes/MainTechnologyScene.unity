@@ -377,7 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caster: {fileID: 386930964}
   forwardReference: {fileID: 386930964}
-  bladeProjectilePrefab: {fileID: 3195961423655719549, guid: fe4de0262df7feb4e893057968db849c, type: 3}
+  bladeProjectilePrefab: {fileID: 8868273811352202549, guid: 2550ce018a2a78f429251119dd649e27, type: 3}
   bladeCount: 4
   bladeSpawnRadius: 1.2
   stormPrefab: {fileID: 555068513588128909, guid: 682045d98eac4974587c485a39cb01b6, type: 3}
