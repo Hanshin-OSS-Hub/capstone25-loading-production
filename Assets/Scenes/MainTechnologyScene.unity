@@ -380,7 +380,7 @@ MonoBehaviour:
   bladeProjectilePrefab: {fileID: 8868273811352202549, guid: 2550ce018a2a78f429251119dd649e27, type: 3}
   bladeCount: 4
   bladeSpawnRadius: 1.2
-  stormPrefab: {fileID: 555068513588128909, guid: 682045d98eac4974587c485a39cb01b6, type: 3}
+  stormPrefab: {fileID: 1750956112380842739, guid: c2738cd25debffe48a1a5ecc6971a32f, type: 3}
   stormSpawnDistance: 4
   barrierPrefab: {fileID: 7412486857737190881, guid: 4d5873287d1da07409459f8f043941a6, type: 3}
   barrierSpawnDistance: 3

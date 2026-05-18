@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StormSkillZone : MonoBehaviour
 {
-    [SerializeField] private float duration = 3f;
+    [SerializeField] private float duration = 5f;
     [SerializeField] private float tickInterval = 0.5f;
     [SerializeField] private float radius = 2.5f;
     [SerializeField] private float pullStrength = 2f;
