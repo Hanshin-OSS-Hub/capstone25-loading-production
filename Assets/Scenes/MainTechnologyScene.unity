@@ -382,7 +382,7 @@ MonoBehaviour:
   bladeSpawnRadius: 1.2
   stormPrefab: {fileID: 555068513588128909, guid: 682045d98eac4974587c485a39cb01b6, type: 3}
   stormSpawnDistance: 4
-  barrierPrefab: {fileID: 8040819433642827273, guid: 530f954a9b85a5943803772e9203971c, type: 3}
+  barrierPrefab: {fileID: 7412486857737190881, guid: 4d5873287d1da07409459f8f043941a6, type: 3}
   barrierSpawnDistance: 3
   dashRunner: {fileID: 386930971}
   dashDistance: 4
