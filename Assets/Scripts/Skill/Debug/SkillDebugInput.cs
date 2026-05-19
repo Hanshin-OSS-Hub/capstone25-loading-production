@@ -4,6 +4,7 @@ public class SkillDebugInput : MonoBehaviour
 {
     [SerializeField] private SkillExecutor skillExecutor;
     [SerializeField] private SkillCameraShake cameraShake;
+    [SerializeField] private HitStopController hitStop;
 
     private void Update()
     {
@@ -36,6 +37,9 @@ public class SkillDebugInput : MonoBehaviour
         }
 
         ProjectLogger.UI($"[디버그] 성공: {result.Message}");
+
+        if (hitStop != null)
+            hitStop.Play(skillId);
 
         if (cameraShake != null)
             cameraShake.Shake(skillId);

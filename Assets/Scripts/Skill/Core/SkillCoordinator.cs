@@ -14,6 +14,7 @@ public class SkillCoordinator : MonoBehaviour
 
     [Header("Feedback")]
     [SerializeField] private SkillCameraShake cameraShake;
+    [SerializeField] private HitStopController hitStop;
 
     private bool _isProcessing;
 
@@ -158,6 +159,9 @@ public class SkillCoordinator : MonoBehaviour
             }
 
             ProjectLogger.UI($"스킬 실행 성공: {castResult.Message}");
+
+            if (hitStop != null)
+                hitStop.Play(skillId);
 
             if (cameraShake != null)
                 cameraShake.Shake(skillId);
