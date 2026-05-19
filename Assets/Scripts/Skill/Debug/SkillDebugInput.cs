@@ -27,8 +27,6 @@ public class SkillDebugInput : MonoBehaviour
 
     private void DebugCast(SkillId skillId)
     {
-        ProjectLogger.Input($"[디버그] 스킬 직접 실행: {skillId}");
-
         SkillCastResult result = skillExecutor.Execute(skillId);
 
         if (!result.IsSuccess)
@@ -40,8 +38,6 @@ public class SkillDebugInput : MonoBehaviour
                 
             return;
         }
-
-        ProjectLogger.UI($"[디버그] 성공: {result.Message}");
 
         if (skillResultView != null)
             skillResultView.ShowSkillActivated(skillId);

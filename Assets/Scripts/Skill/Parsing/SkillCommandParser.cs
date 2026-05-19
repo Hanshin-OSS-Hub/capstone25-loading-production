@@ -37,10 +37,6 @@ public class SkillCommandParser : MonoBehaviour
 
         if (aliasMatched != SkillId.None)
         {
-            ProjectLogger.UI(
-                $"스킬 명령 매칭: {recognizedText} → {standardCommands[aliasMatched]}"
-            );
-
             return aliasMatched;
         }
 
@@ -52,10 +48,6 @@ public class SkillCommandParser : MonoBehaviour
 
         if (correctedSkill != SkillId.None)
         {
-            ProjectLogger.UI(
-                $"스킬 명령 보정: {recognizedText} → {correctedCommand} (유사도: {similarity:F2})"
-            );
-
             return correctedSkill;
         }
 

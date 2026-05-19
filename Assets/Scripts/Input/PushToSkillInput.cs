@@ -22,7 +22,6 @@ public class PushToSkillInput : MonoBehaviour
             _isPressed = true;
             _pressedTime = Time.time;
 
-            ProjectLogger.Input("스킬 입력 시작");
             OnSkillPressed?.Invoke();
         }
 
@@ -43,7 +42,6 @@ public class PushToSkillInput : MonoBehaviour
                 return;
             }
 
-            ProjectLogger.Input("스킬 입력 종료");
             OnSkillReleased?.Invoke();
         }
     }

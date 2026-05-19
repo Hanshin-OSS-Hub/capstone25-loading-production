@@ -63,8 +63,6 @@ public class MicrophoneRecorder : MonoBehaviour
 
         _isRecording = true;
 
-        ProjectLogger.Record("녹음 시작");
-
         return OperationResult<bool>.Success(true);
     }
 
@@ -107,8 +105,6 @@ public class MicrophoneRecorder : MonoBehaviour
 
         _recordingClip.GetData(samples, 0);
 
-        ProjectLogger.Record("녹음 종료");
-
         AudioRecordingData data = new AudioRecordingData(
             samples,
             frequency,
@@ -130,7 +126,5 @@ public class MicrophoneRecorder : MonoBehaviour
 
         _recordingClip = null;
         _isRecording = false;
-
-        ProjectLogger.Record("녹음 취소");
     }
 }
