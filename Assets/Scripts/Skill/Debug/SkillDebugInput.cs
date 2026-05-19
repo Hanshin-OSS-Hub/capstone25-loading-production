@@ -5,6 +5,7 @@ public class SkillDebugInput : MonoBehaviour
     [SerializeField] private SkillExecutor skillExecutor;
     [SerializeField] private SkillCameraShake cameraShake;
     [SerializeField] private HitStopController hitStop;
+    [SerializeField] private SkillResultView skillResultView;
 
     private void Update()
     {
@@ -33,10 +34,17 @@ public class SkillDebugInput : MonoBehaviour
         if (!result.IsSuccess)
         {
             ProjectLogger.Warning($"[디버그] 실패: {result.Message}");
+
+            if (skillResultView != null)
+                skillResultView.ShowFailed(result.Message);
+                
             return;
         }
 
         ProjectLogger.UI($"[디버그] 성공: {result.Message}");
+
+        if (skillResultView != null)
+            skillResultView.ShowSkillActivated(skillId);
 
         if (hitStop != null)
             hitStop.Play(skillId);

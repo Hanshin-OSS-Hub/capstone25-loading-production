@@ -16,6 +16,9 @@ public class SkillCoordinator : MonoBehaviour
     [SerializeField] private SkillCameraShake cameraShake;
     [SerializeField] private HitStopController hitStop;
 
+    [Header("Result UI")]
+    [SerializeField] private SkillResultView skillResultView;
+
     private bool _isProcessing;
 
     private void OnEnable()
@@ -116,6 +119,9 @@ public class SkillCoordinator : MonoBehaviour
             {
                 ProjectLogger.Warning($"스킬 STT 실패: {sttResult.ErrorMessage}");
 
+                if (skillResultView != null)
+                    skillResultView.ShowFailed(sttResult.ErrorMessage);
+
                 if (playerBubble != null)
                     playerBubble.SetText(sttResult.ErrorMessage);
 
@@ -127,6 +133,9 @@ public class SkillCoordinator : MonoBehaviour
 
             string recognizedText = sttResult.Data;
             ProjectLogger.STT($"스킬 명령 인식 결과: {recognizedText}");
+            
+            if (skillResultView != null)
+                skillResultView.ShowRecognized(recognizedText);
 
             if (playerBubble != null)
                 playerBubble.SetText($"인식 결과: {recognizedText}");
@@ -136,6 +145,9 @@ public class SkillCoordinator : MonoBehaviour
             if (skillId == SkillId.None)
             {
                 ProjectLogger.Warning($"알 수 없는 스킬 명령: {recognizedText}");
+
+                if (skillResultView != null)
+                    skillResultView.ShowFailed("알 수 없는 스킬입니다.");
 
                 if (npcBubble != null)
                     npcBubble.SetText(SkillTestMessages.UnknownSkill);
@@ -159,6 +171,9 @@ public class SkillCoordinator : MonoBehaviour
             }
 
             ProjectLogger.UI($"스킬 실행 성공: {castResult.Message}");
+
+            if (skillResultView != null)
+                skillResultView.ShowSkillActivated(skillId);
 
             if (hitStop != null)
                 hitStop.Play(skillId);
