@@ -195,10 +195,16 @@ public class SkillCoordinator : MonoBehaviour
     {
         ProjectLogger.Warning("스킬 입력이 너무 짧아 취소되었습니다.");
 
+        if (sttService != null)
+            sttService.CancelRecording();
+
         if (playerBubble != null)
             playerBubble.SetText("조금 더 길게 말해주세요.");
 
         if (npcBubble != null)
             npcBubble.SetText("소리가 닿기 전에 사라졌습니다.");
+
+        if (skillResultView != null)
+            skillResultView.ShowFailed("입력이 너무 짧습니다.");
     }
 }

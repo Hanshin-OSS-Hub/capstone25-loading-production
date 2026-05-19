@@ -13,6 +13,7 @@ public class SttService : MonoBehaviour
         if (recorder == null)
         {
             ProjectLogger.Error("SttService: recorder가 연결되지 않았습니다.");
+
             return OperationResult<bool>.Fail(
                 ConversationErrorType.Unknown,
                 "녹음 모듈이 연결되지 않았습니다."
@@ -39,6 +40,7 @@ public class SttService : MonoBehaviour
         if (recorder == null || transcriber == null)
         {
             ProjectLogger.Error("SttService: recorder 또는 transcriber가 연결되지 않았습니다.");
+
             return OperationResult<string>.Fail(
                 ConversationErrorType.Unknown,
                 "음성 인식 모듈이 연결되지 않았습니다."
@@ -77,6 +79,27 @@ public class SttService : MonoBehaviour
                 ConversationErrorType.STTFailed,
                 "음성 인식 처리 중 오류가 발생했습니다."
             );
+        }
+    }
+
+    public void CancelRecording()
+    {
+        if (recorder == null)
+        {
+            ProjectLogger.Warning(
+                "SttService: recorder가 없어 녹음을 취소할 수 없습니다."
+            );
+
+            return;
+        }
+
+        try
+        {
+            recorder.CancelRecording();
+        }
+        catch (Exception e)
+        {
+            ProjectLogger.Warning($"녹음 취소 중 예외 발생: {e.Message}");
         }
     }
 }

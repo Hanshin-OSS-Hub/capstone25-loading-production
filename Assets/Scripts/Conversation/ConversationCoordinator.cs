@@ -190,6 +190,9 @@ public class ConversationCoordinator : MonoBehaviour
     {
         ProjectLogger.Warning("대화 입력이 너무 짧아 취소되었습니다.");
 
+        if (sttService != null)
+            sttService.CancelRecording();
+
         SetState(ConversationState.Idle);
 
         if (playerBubble != null)
