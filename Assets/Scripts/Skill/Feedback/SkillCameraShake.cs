@@ -19,8 +19,6 @@ public class SkillCameraShake : MonoBehaviour
 
     public void Shake(SkillId skillId)
     {
-        Debug.Log($"[CameraShake] 호출됨: {skillId}");
-
         if (impulseSource == null)
         {
             ProjectLogger.Warning("SkillCameraShake: CinemachineImpulseSource가 연결되지 않았습니다.");
