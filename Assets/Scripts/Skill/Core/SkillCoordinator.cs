@@ -12,6 +12,9 @@ public class SkillCoordinator : MonoBehaviour
     [SerializeField] private SpeechBubbleView playerBubble;
     [SerializeField] private SpeechBubbleView npcBubble;
 
+    [Header("Feedback")]
+    [SerializeField] private SkillCameraShake cameraShake;
+
     private bool _isProcessing;
 
     private void OnEnable()
@@ -156,8 +159,12 @@ public class SkillCoordinator : MonoBehaviour
 
             ProjectLogger.UI($"스킬 실행 성공: {castResult.Message}");
 
+            if (cameraShake != null)
+                cameraShake.Shake(skillId);
+
             if (npcBubble != null)
                 npcBubble.SetText(castResult.Message);
+
         }
         finally
         {

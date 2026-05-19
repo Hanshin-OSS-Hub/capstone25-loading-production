@@ -3,6 +3,7 @@ using UnityEngine;
 public class SkillDebugInput : MonoBehaviour
 {
     [SerializeField] private SkillExecutor skillExecutor;
+    [SerializeField] private SkillCameraShake cameraShake;
 
     private void Update()
     {
@@ -10,24 +11,16 @@ public class SkillDebugInput : MonoBehaviour
             return;
 
         if (Input.GetKeyDown(KeyCode.Z))
-        {
             DebugCast(SkillId.Blade);
-        }
 
         if (Input.GetKeyDown(KeyCode.X))
-        {
             DebugCast(SkillId.Storm);
-        }
 
         if (Input.GetKeyDown(KeyCode.C))
-        {
             DebugCast(SkillId.Barrier);
-        }
 
         if (Input.GetKeyDown(KeyCode.V))
-        {
             DebugCast(SkillId.Dash);
-        }
     }
 
     private void DebugCast(SkillId skillId)
@@ -39,10 +32,12 @@ public class SkillDebugInput : MonoBehaviour
         if (!result.IsSuccess)
         {
             ProjectLogger.Warning($"[디버그] 실패: {result.Message}");
+            return;
         }
-        else
-        {
-            ProjectLogger.UI($"[디버그] 성공: {result.Message}");
-        }
+
+        ProjectLogger.UI($"[디버그] 성공: {result.Message}");
+
+        if (cameraShake != null)
+            cameraShake.Shake(skillId);
     }
 }
