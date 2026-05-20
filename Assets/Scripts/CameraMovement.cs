@@ -16,6 +16,12 @@ public class CameraMovement : MonoBehaviour
     public float minPitch = -10f;       // 아래를 내려다볼 수 있는 최대 제한 각도
     public float maxPitch = 60f;        // 위를 올려다볼 수 있는 최대 제한 각도
 
+    [Header("카메라 흔들림 설정")]
+    [SerializeField] private float shakeReturnSpeed = 20f;
+
+    private float shakeAmount;
+    private float shakeTimer;
+
     private float pitch = 0f;           // 수직 회전 축 누적 값 (X축 회전)
 
     // 플레이어 스크립트가 프레임 어긋남 없이 참조할 수 있도록 수평 회전 값을 public 프로퍼티로 제공
@@ -66,10 +72,30 @@ public class CameraMovement : MonoBehaviour
         // 회전 쿼터니언에 X, Y, Z 오프셋 전체를 곱하여 카메라가 위치해야 할 상대적 방향 연산
         Vector3 calculatedOffset = cameraRotation * new Vector3(offset.x, offset.y, -offset.z);
         
+        Vector3 finalPosition = targetCenter + calculatedOffset;
+
+        if (shakeTimer > 0f)
+        {
+            Vector3 shakeOffset = Random.insideUnitSphere * shakeAmount;
+            finalPosition += shakeOffset;
+
+            shakeTimer -= Time.unscaledDeltaTime;
+        }
+        else
+        {
+            shakeAmount = 0f;
+        }
+
         // 지연 시간 보간을 거치지 않고, 이동이 완료된 플레이어의 위치에 카메라 좌표를 1:1로 즉시 강제 대입
-        transform.position = targetCenter + calculatedOffset;
+        transform.position = finalPosition;
         
         // 카메라 회전 값을 계산된 마우스 입력값과 완벽하게 일치시킴
         transform.rotation = cameraRotation;
+    }
+
+    public void Shake(float amount, float duration)
+    {
+        shakeAmount = Mathf.Max(shakeAmount, amount);
+        shakeTimer = Mathf.Max(shakeTimer, duration);
     }
 }

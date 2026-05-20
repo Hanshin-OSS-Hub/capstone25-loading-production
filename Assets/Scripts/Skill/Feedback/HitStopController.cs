@@ -14,6 +14,8 @@ public class HitStopController : MonoBehaviour
 
     public void Play(SkillId skillId)
     {
+        Debug.Log($"[HitStop] 호출됨: {skillId}");
+        
         float duration = GetDuration(skillId);
 
         if (duration <= 0f)
