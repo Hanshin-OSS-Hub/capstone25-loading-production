@@ -16,9 +16,6 @@ public class CameraMovement : MonoBehaviour
     public float minPitch = -10f;       // 아래를 내려다볼 수 있는 최대 제한 각도
     public float maxPitch = 60f;        // 위를 올려다볼 수 있는 최대 제한 각도
 
-    [Header("카메라 흔들림 설정")]
-    [SerializeField] private float shakeReturnSpeed = 20f;
-
     private float shakeAmount;
     private float shakeTimer;
 

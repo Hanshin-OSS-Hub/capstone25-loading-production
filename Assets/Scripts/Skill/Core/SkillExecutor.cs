@@ -70,10 +70,7 @@ public class SkillExecutor : MonoBehaviour
             return SkillCastResult.Fail($"{skillName} 프리팹이 연결되지 않았습니다.");
         }
 
-        Transform dirRef = forwardReference != null ? forwardReference : caster;
-        Vector3 forward = dirRef.forward;
-        forward.y = 0f;
-        forward.Normalize();
+        Vector3 forward = GetAimDirection();
 
         for (int i = 0; i < bladeCount; i++)
         {
@@ -106,12 +103,17 @@ public class SkillExecutor : MonoBehaviour
             return SkillCastResult.Fail($"{skillName} 프리팹이 연결되지 않았습니다.");
         }
 
-        Transform dirRef = forwardReference != null ? forwardReference : caster;
-        Vector3 forward = dirRef.forward;
-        forward.y = 0f;
-        forward.Normalize();
+        Vector3 forward = GetAimDirection();
 
-        Vector3 spawnPosition = caster.position + forward * stormSpawnDistance;
+        Vector3 spawnPosition = caster.position + Vector3.up * 1f + forward * stormSpawnDistance;
+        
+        float minY = caster.position.y + 0.5f;
+
+        if (spawnPosition.y < minY)
+        {
+            spawnPosition.y = minY;
+        }
+        
         Instantiate(stormPrefab, spawnPosition, Quaternion.identity);
 
         return SkillCastResult.Success(SkillNameProvider.GetMuninnCastMessage(SkillId.Storm));
@@ -126,10 +128,7 @@ public class SkillExecutor : MonoBehaviour
             return SkillCastResult.Fail($"{skillName} 프리팹이 연결되지 않았습니다.");
         }
 
-        Transform dirRef = forwardReference != null ? forwardReference : caster;
-        Vector3 forward = dirRef.forward;
-        forward.y = 0f;
-        forward.Normalize();
+        Vector3 forward = GetHorizontalDirection();
 
         Vector3 spawnPosition = caster.position + forward * barrierSpawnDistance;
         Quaternion rotation = Quaternion.LookRotation(forward);
@@ -147,10 +146,7 @@ public class SkillExecutor : MonoBehaviour
             return SkillCastResult.Fail("돌진 모듈이 연결되지 않았습니다.");
         }
 
-        Transform dirRef = forwardReference != null ? forwardReference : caster;
-        Vector3 forward = dirRef.forward;
-        forward.y = 0f;
-        forward.Normalize();
+        Vector3 forward = GetHorizontalDirection();
 
         dashRunner.RunDash(
             forward,
@@ -161,5 +157,31 @@ public class SkillExecutor : MonoBehaviour
         );
 
         return SkillCastResult.Success(SkillNameProvider.GetMuninnCastMessage(SkillId.Dash));
+    }
+
+    private Vector3 GetAimDirection()
+    {
+        Transform dirRef = forwardReference != null ? forwardReference : caster;
+
+        Vector3 direction = dirRef.forward;
+
+        if (direction.sqrMagnitude < 0.01f)
+            direction = caster.forward;
+
+        return direction.normalized;
+    }
+
+    private Vector3 GetHorizontalDirection()
+    {
+        Transform dirRef = forwardReference != null ? forwardReference : caster;
+
+        Vector3 direction = dirRef.forward;
+        direction.y = 0f;
+
+        if (direction.sqrMagnitude < 0.01f)
+            direction = caster.forward;
+
+        direction.y = 0f;
+        return direction.normalized;
     }
 }
