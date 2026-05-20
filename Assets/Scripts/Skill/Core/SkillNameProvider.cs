@@ -21,7 +21,7 @@ public static class SkillNameProvider
         }
     }
 
-    public static string GetMuninnCastMessage(SkillId skillId)
+    public static string GetCastMessage(SkillId skillId)
     {
         switch (skillId)
         {

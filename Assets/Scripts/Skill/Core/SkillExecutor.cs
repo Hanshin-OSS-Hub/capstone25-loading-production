@@ -91,7 +91,7 @@ public class SkillExecutor : MonoBehaviour
             }
         }
 
-        return SkillCastResult.Success(SkillNameProvider.GetMuninnCastMessage(SkillId.Blade));
+        return SkillCastResult.Success(SkillNameProvider.GetCastMessage(SkillId.Blade));
     }
 
     private SkillCastResult ExecuteStorm()
@@ -116,7 +116,7 @@ public class SkillExecutor : MonoBehaviour
         
         Instantiate(stormPrefab, spawnPosition, Quaternion.identity);
 
-        return SkillCastResult.Success(SkillNameProvider.GetMuninnCastMessage(SkillId.Storm));
+        return SkillCastResult.Success(SkillNameProvider.GetCastMessage(SkillId.Storm));
     }
 
     private SkillCastResult ExecuteBarrier()
@@ -135,7 +135,7 @@ public class SkillExecutor : MonoBehaviour
 
         Instantiate(barrierPrefab, spawnPosition, rotation);
 
-        return SkillCastResult.Success(SkillNameProvider.GetMuninnCastMessage(SkillId.Barrier));
+        return SkillCastResult.Success(SkillNameProvider.GetCastMessage(SkillId.Barrier));
     }
 
     private SkillCastResult ExecuteDash()
@@ -156,7 +156,7 @@ public class SkillExecutor : MonoBehaviour
             dashSpeedBuffMultiplier
         );
 
-        return SkillCastResult.Success(SkillNameProvider.GetMuninnCastMessage(SkillId.Dash));
+        return SkillCastResult.Success(SkillNameProvider.GetCastMessage(SkillId.Dash));
     }
 
     private Vector3 GetAimDirection()
