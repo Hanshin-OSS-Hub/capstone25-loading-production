@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;                      // 수직 속도 벡터
     private bool isJumping = false;        // 점프 여부
     private bool isDead = false;           // 사망 여부
+    private bool hasSpeedParameter;
 
     private int speedHash;                 // 애니메이터 Speed 해시 ID
     private CameraMovement cameraScript;   // 카메라 스크립트 참조
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         if (animator == null) animator = GetComponentInChildren<Animator>();
 
         speedHash = Animator.StringToHash("Speed");
+        hasSpeedParameter = HasAnimatorParameter(animator, speedHash);
 
         if (Camera.main != null)
         {
@@ -84,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
             targetSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed; 
         }
 
-        if (animator != null)
+        if (animator != null && hasSpeedParameter)
         {
             animator.SetFloat(speedHash, targetSpeed); 
         }
@@ -136,5 +138,19 @@ public class PlayerMovement : MonoBehaviour
 
         // 캐릭터 컨트롤러 비활성화
         if (controller != null) controller.enabled = false; 
+    }
+
+    private bool HasAnimatorParameter(Animator targetAnimator, int parameterHash)
+    {
+        if (targetAnimator == null)
+            return false;
+
+        foreach (AnimatorControllerParameter parameter in targetAnimator.parameters)
+        {
+            if (parameter.nameHash == parameterHash)
+                return true;
+        }
+
+        return false;
     }
 }

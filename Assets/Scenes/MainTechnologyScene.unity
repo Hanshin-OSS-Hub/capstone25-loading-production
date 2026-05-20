@@ -746,25 +746,6 @@ CharacterController:
   m_CorrespondingSourceObject: {fileID: 2197702747431416027, guid: 66f01a8db88f9644baed659d1f91cdca, type: 3}
   m_PrefabInstance: {fileID: 1274873814}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &386930969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339358102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fae35a9c97c2c54db41884fe559420d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
-  rotationSpeed: 1
-  gravity: -9.81
-  controller: {fileID: 386930968}
-  cameraTransform: {fileID: 963194228}
-  animator: {fileID: 386930967}
-  dashRunner: {fileID: 386930971}
 --- !u!114 &386930970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +789,28 @@ MonoBehaviour:
   dashStartEffect: {fileID: 441388583}
   dashEndEffect: {fileID: 441388583}
   dashAudio: {fileID: 1230899811}
+--- !u!114 &386930972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339358102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327b8793b7dcf834e87cc0942b978f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 386930968}
+  animator: {fileID: 386930967}
+  walkSpeed: 3
+  runSpeed: 6
+  gravity: -9.81
+  jumpHeight: 2
+  groundDistance: 1.1
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &432509103
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,7 +2636,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1527881004230699645, guid: 66f01a8db88f9644baed659d1f91cdca, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 386930969}
+      addedObject: {fileID: 386930972}
     - targetCorrespondingSourceObject: {fileID: 1527881004230699645, guid: 66f01a8db88f9644baed659d1f91cdca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 386930970}
@@ -2829,10 +2832,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1594656717}
-  - component: {fileID: 1594656722}
-  - component: {fileID: 1594656719}
-  - component: {fileID: 1594656723}
-  - component: {fileID: 1594656718}
   - component: {fileID: 1594656727}
   - component: {fileID: 1594656721}
   - component: {fileID: 1594656720}
@@ -2865,34 +2864,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1594656718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594656715}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c6dbff218153844becf8e3b98194d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkKey: 116
-  minimumHoldTime: 0.25
---- !u!114 &1594656719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594656715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dc5e8da60561534b8a12ff1ff1d6887, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent
-  personaProvider: {fileID: 0}
 --- !u!114 &1594656720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2920,38 +2891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDurationSeconds: 30
   sampleRate: 16000
---- !u!114 &1594656722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594656715}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e648dc343d13c0e4fb05ea3d3b2657c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputHandler: {fileID: 1594656718}
-  sttService: {fileID: 1594656724}
-  geminiClient: {fileID: 1594656719}
-  playerBubble: {fileID: 1130200127}
-  npcBubble: {fileID: 432509108}
---- !u!114 &1594656723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594656715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7ff088d29f54534b81e32b756bed14c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  personaTextAsset: {fileID: 0}
-  fallbackPersona: "\uB2F9\uC2E0\uC740 \uCC28\uBD84\uD558\uACE0 \uC2E0\uC911\uD55C
-    \uC548\uB0B4\uC790\uB2E4. \uC9E7\uACE0 \uBA85\uD655\uD558\uAC8C \uB2F5\uD558\uB77C."
 --- !u!114 &1594656724
 MonoBehaviour:
   m_ObjectHideFlags: 0
