@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5215521956439327060}
-  - component: {fileID: 1072393936758961694}
   - component: {fileID: 5153274257746058963}
+  - component: {fileID: 1072393936758961694}
   m_Layer: 0
   m_Name: Storm
   m_TagString: Untagged
@@ -35,6 +35,23 @@ Transform:
   - {fileID: 2660474339040205429}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5153274257746058963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750956112380842739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e40ca0e7f3898fd47a816d1ea6499cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 5
+  tickInterval: 0.5
+  radius: 2.5
+  pullStrength: 2
+  tickDamage: 5
 --- !u!82 &1072393936758961694
 AudioSource:
   m_ObjectHideFlags: 0
@@ -131,23 +148,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5153274257746058963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750956112380842739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e40ca0e7f3898fd47a816d1ea6499cc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 5
-  tickInterval: 0.5
-  radius: 2.5
-  pullStrength: 2
-  tickDamage: 5
 --- !u!1 &8716420232970420504
 GameObject:
   m_ObjectHideFlags: 0
