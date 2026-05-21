@@ -22,7 +22,7 @@ public class PlayerMovement_ : MonoBehaviour
     private bool isDead = false;           // 사망 여부
 
     private int speedHash;                 // 애니메이터 Speed 해시 ID
-    private CameraMovement cameraScript;   // 카메라 스크립트 참조
+    private CameraMovement_ cameraScript;   // 카메라 스크립트 참조
 
     void Start()
     {
@@ -33,7 +33,7 @@ public class PlayerMovement_ : MonoBehaviour
 
         if (Camera.main != null)
         {
-            cameraScript = Camera.main.GetComponent<CameraMovement>();
+            cameraScript = Camera.main.GetComponent<CameraMovement_>();
         }
     }
 

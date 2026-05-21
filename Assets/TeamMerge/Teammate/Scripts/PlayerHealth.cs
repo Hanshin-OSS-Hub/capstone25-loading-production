@@ -61,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("플레이어 사망: 모든 이동 및 마우스 회전 제어를 정지합니다.");
 
         // PlayerMovement 스크립트를 찾아 이동 정지 및 사망 애니메이션(Dead)을 실행시킵니다.
-        PlayerMovement moveScript = GetComponent<PlayerMovement>();
+        PlayerMovement_ moveScript = GetComponent<PlayerMovement_>();
         if (moveScript != null)
         {
             moveScript.Die();
