@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -21,8 +22,10 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("전투 및 스킬 설정")]
     public float attackRange = 5.0f;   // 스킬 발동 사정거리
-    public float skillCooldown = 10.0f; // 스킬 재사용 대기 시간
+    public float skillCooldown = 5.0f; // 스킬 재사용 대기 시간
+    public float attackStopDuration = 1.0f;
     private float cooldownTimer = 0f;  // 쿨타임 타이머
+    private bool isAttacking = false;  // 공격 상태 여부
 
     [Header("적 UI 슬라이더 제어")]
     public Slider Enemy_HP_Slider;     // 실시간 조건부 출력용 슬라이더
@@ -72,6 +75,22 @@ public class EnemyMovement : MonoBehaviour
     {
         // 사망 상태일 경우 로직 중단
         if (isDead) return;
+
+        if (isAttacking)
+        {
+            if (agent != null && agent.enabled)
+            {
+                agent.ResetPath();
+                agent.velocity = Vector3.zero;
+            }
+
+            if (animator != null)
+            {
+                animator.SetFloat(speedHash, 0f);
+            }
+
+            return;
+        }
 
         // 스킬 쿨타임 타이머 계산
         if (cooldownTimer > 0f)
@@ -139,12 +158,13 @@ public class EnemyMovement : MonoBehaviour
     // 랜덤 스킬 발동 함수
     void UseRandomSkill()
     {
-        if (animator == null) return;
+        if (animator == null)
+            return;
 
-        if (agent != null && agent.enabled)
-        {
-            agent.ResetPath();
-        }
+        if (isAttacking)
+            return;
+
+        StopAndFacePlayer();
 
         int randomSkillIndex = Random.Range(0, 2);
 
@@ -160,6 +180,47 @@ public class EnemyMovement : MonoBehaviour
         }
 
         cooldownTimer = skillCooldown;
+        StartCoroutine(AttackStopRoutine());
+    }
+
+    private void StopAndFacePlayer()
+    {
+        if (agent != null && agent.enabled)
+        {
+            agent.ResetPath();
+            agent.velocity = Vector3.zero;
+            agent.isStopped = true;
+        }
+
+        if (animator != null)
+        {
+            animator.SetFloat(speedHash, 0f);
+        }
+
+        if (playerTarget == null)
+            return;
+
+        Vector3 lookDirection = playerTarget.position - transform.position;
+        lookDirection.y = 0f;
+
+        if (lookDirection.sqrMagnitude <= 0.001f)
+            return;
+
+        transform.rotation = Quaternion.LookRotation(lookDirection.normalized);
+    }
+
+    private IEnumerator AttackStopRoutine()
+    {
+        isAttacking = true;
+
+        yield return new WaitForSeconds(attackStopDuration);
+
+        isAttacking = false;
+
+        if (!isDead && agent != null && agent.enabled)
+        {
+            agent.isStopped = false;
+        }
     }
 
     // 순찰 상태 제어 로직
@@ -212,6 +273,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (isDead) return;
         isDead = true;
+        isAttacking = false;
 
         // 체력바 UI 즉시 비활성화
         if (Enemy_HP_Slider != null)
@@ -223,6 +285,7 @@ public class EnemyMovement : MonoBehaviour
         if (agent != null)
         {
             agent.ResetPath();
+            agent.isStopped = true;
             agent.enabled = false; 
         }
 
