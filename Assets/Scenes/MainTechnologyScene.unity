@@ -2695,8 +2695,6 @@ MonoBehaviour:
   sttService: {fileID: 1807480686}
   commandParser: {fileID: 1988438525}
   skillExecutor: {fileID: 386930970}
-  playerBubble: {fileID: 0}
-  npcBubble: {fileID: 0}
   cameraShake: {fileID: 736681342}
   hitStop: {fileID: 736681341}
   skillResultView: {fileID: 639934147}

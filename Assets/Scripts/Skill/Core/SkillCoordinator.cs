@@ -8,10 +8,6 @@ public class SkillCoordinator : MonoBehaviour
     [SerializeField] private SkillCommandParser commandParser;
     [SerializeField] private SkillExecutor skillExecutor;
 
-    [Header("UI (Optional)")]
-    [SerializeField] private SpeechBubbleView playerBubble;
-    [SerializeField] private SpeechBubbleView npcBubble;
-
     [Header("Feedback")]
     [SerializeField] private SkillCameraShake cameraShake;
     [SerializeField] private HitStopController hitStop;
@@ -46,10 +42,6 @@ public class SkillCoordinator : MonoBehaviour
         if (_isProcessing)
         {
             ProjectLogger.Warning(SkillTestMessages.Processing);
-
-            if (npcBubble != null)
-                npcBubble.SetText(SkillTestMessages.Processing);
-
             return;
         }
 
@@ -57,8 +49,8 @@ public class SkillCoordinator : MonoBehaviour
         {
             ProjectLogger.Error("SkillCoordinator: SttService가 연결되지 않았습니다.");
 
-            if (npcBubble != null)
-                npcBubble.SetText(SkillTestMessages.MissingModules);
+            if (skillResultView != null)
+                skillResultView.ShowFailed(SkillTestMessages.MissingModules);
 
             return;
         }
@@ -69,19 +61,11 @@ public class SkillCoordinator : MonoBehaviour
         {
             ProjectLogger.Error($"스킬 녹음 시작 실패: {result.ErrorMessage}");
 
-            if (playerBubble != null)
-                playerBubble.SetText(result.ErrorMessage);
-
-            if (npcBubble != null)
-                npcBubble.SetText("스킬 녹음을 시작하지 못했습니다.");
+            if (skillResultView != null)
+                skillResultView.ShowFailed(result.ErrorMessage);
 
             return;
         }
-
-        ProjectLogger.Record("스킬 녹음 시작");
-
-        if (playerBubble != null)
-            playerBubble.SetText(SkillTestMessages.Recording);
     }
 
     private async void HandleSkillReleased()
@@ -89,10 +73,6 @@ public class SkillCoordinator : MonoBehaviour
         if (_isProcessing)
         {
             ProjectLogger.Warning(SkillTestMessages.Processing);
-
-            if (npcBubble != null)
-                npcBubble.SetText(SkillTestMessages.Processing);
-
             return;
         }
 
@@ -100,8 +80,8 @@ public class SkillCoordinator : MonoBehaviour
         {
             ProjectLogger.Error("SkillCoordinator: 필요한 모듈이 연결되지 않았습니다.");
 
-            if (npcBubble != null)
-                npcBubble.SetText(SkillTestMessages.MissingModules);
+            if (skillResultView != null)
+                skillResultView.ShowFailed(SkillTestMessages.MissingModules);
 
             return;
         }
@@ -110,9 +90,6 @@ public class SkillCoordinator : MonoBehaviour
 
         try
         {
-            if (playerBubble != null)
-                playerBubble.SetText(SkillTestMessages.Transcribing);
-
             var sttResult = await sttService.StopRecordingAndTranscribeAsync();
 
             if (!sttResult.IsSuccess)
@@ -122,23 +99,14 @@ public class SkillCoordinator : MonoBehaviour
                 if (skillResultView != null)
                     skillResultView.ShowFailed(sttResult.ErrorMessage);
 
-                if (playerBubble != null)
-                    playerBubble.SetText(sttResult.ErrorMessage);
-
-                if (npcBubble != null)
-                    npcBubble.SetText("스킬 명령 인식에 실패했습니다.");
-
                 return;
             }
 
             string recognizedText = sttResult.Data;
             ProjectLogger.STT($"스킬 명령 인식 결과: {recognizedText}");
-            
+
             if (skillResultView != null)
                 skillResultView.ShowRecognized(recognizedText);
-
-            if (playerBubble != null)
-                playerBubble.SetText($"인식 결과: {recognizedText}");
 
             SkillId skillId = commandParser.Parse(recognizedText);
 
@@ -147,10 +115,7 @@ public class SkillCoordinator : MonoBehaviour
                 ProjectLogger.Warning($"알 수 없는 스킬 명령: {recognizedText}");
 
                 if (skillResultView != null)
-                    skillResultView.ShowFailed("알 수 없는 스킬입니다.");
-
-                if (npcBubble != null)
-                    npcBubble.SetText(SkillTestMessages.UnknownSkill);
+                    skillResultView.ShowFailed(SkillTestMessages.UnknownSkill);
 
                 return;
             }
@@ -164,8 +129,8 @@ public class SkillCoordinator : MonoBehaviour
             {
                 ProjectLogger.Warning($"스킬 실행 실패: {castResult.Message}");
 
-                if (npcBubble != null)
-                    npcBubble.SetText(castResult.Message);
+                if (skillResultView != null)
+                    skillResultView.ShowFailed(castResult.Message);
 
                 return;
             }
@@ -180,10 +145,6 @@ public class SkillCoordinator : MonoBehaviour
 
             if (cameraShake != null)
                 cameraShake.Shake(skillId);
-
-            if (npcBubble != null)
-                npcBubble.SetText(castResult.Message);
-
         }
         finally
         {
@@ -197,12 +158,6 @@ public class SkillCoordinator : MonoBehaviour
 
         if (sttService != null)
             sttService.CancelRecording();
-
-        if (playerBubble != null)
-            playerBubble.SetText("조금 더 길게 말해주세요.");
-
-        if (npcBubble != null)
-            npcBubble.SetText("소리가 닿기 전에 사라졌습니다.");
 
         if (skillResultView != null)
             skillResultView.ShowFailed("입력이 너무 짧습니다.");

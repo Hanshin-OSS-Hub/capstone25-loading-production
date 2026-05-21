@@ -17,11 +17,6 @@ public static class ProjectLogger
         Debug.Log($"<color=#4DD0E1>[STT]</color> {message}");
     }
 
-    public static void LLM(string message)
-    {
-        Debug.Log($"<color=#FFF176>[LLM]</color> {message}");
-    }
-
     public static void UI(string message)
     {
         Debug.Log($"<color=#BA68C8>[UI]</color> {message}");
