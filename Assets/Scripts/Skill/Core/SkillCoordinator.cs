@@ -182,6 +182,17 @@ public class SkillCoordinator : MonoBehaviour
 
     private void HandleSkillCanceled()
     {
+        if (IsPlayerDead())
+        {
+            if (sttService != null)
+                sttService.CancelRecording();
+
+            if (skillResultView != null)
+                skillResultView.ShowFailed("플레이어가 사망하여 스킬을 사용할 수 없습니다.");
+
+            return;
+        }
+
         ProjectLogger.Warning("스킬 입력이 너무 짧아 취소되었습니다.");
 
         if (sttService != null)
