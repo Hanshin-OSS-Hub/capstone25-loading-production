@@ -1,4 +1,4 @@
-public static class SkillTestMessages
+public static class SkillMessages
 {
     public const string Processing = "스킬 처리 중입니다.";
     public const string UnknownSkill = "알 수 없는 스킬입니다.";

@@ -41,7 +41,7 @@ public class SkillCoordinator : MonoBehaviour
     {
         if (_isProcessing)
         {
-            ProjectLogger.Warning(SkillTestMessages.Processing);
+            ProjectLogger.Warning(SkillMessages.Processing);
             return;
         }
 
@@ -50,7 +50,7 @@ public class SkillCoordinator : MonoBehaviour
             ProjectLogger.Error("SkillCoordinator: SttService가 연결되지 않았습니다.");
 
             if (skillResultView != null)
-                skillResultView.ShowFailed(SkillTestMessages.MissingModules);
+                skillResultView.ShowFailed(SkillMessages.MissingModules);
 
             return;
         }
@@ -72,7 +72,7 @@ public class SkillCoordinator : MonoBehaviour
     {
         if (_isProcessing)
         {
-            ProjectLogger.Warning(SkillTestMessages.Processing);
+            ProjectLogger.Warning(SkillMessages.Processing);
             return;
         }
 
@@ -81,7 +81,7 @@ public class SkillCoordinator : MonoBehaviour
             ProjectLogger.Error("SkillCoordinator: 필요한 모듈이 연결되지 않았습니다.");
 
             if (skillResultView != null)
-                skillResultView.ShowFailed(SkillTestMessages.MissingModules);
+                skillResultView.ShowFailed(SkillMessages.MissingModules);
 
             return;
         }
@@ -115,7 +115,7 @@ public class SkillCoordinator : MonoBehaviour
                 ProjectLogger.Warning($"알 수 없는 스킬 명령: {recognizedText}");
 
                 if (skillResultView != null)
-                    skillResultView.ShowFailed(SkillTestMessages.UnknownSkill);
+                    skillResultView.ShowFailed(SkillMessages.UnknownSkill);
 
                 return;
             }
