@@ -4,9 +4,10 @@ public class BladeSkillProjectile : MonoBehaviour
 {
     [SerializeField] private float speed = 12f;
     [SerializeField] private float lifeTime = 2f;
-    [SerializeField] private int damage = 10;
+    [SerializeField] private float damage = 10f;
 
     private Vector3 _moveDirection;
+    private bool _hasHit;
 
     public void Initialize(Vector3 direction)
     {
@@ -21,8 +22,17 @@ public class BladeSkillProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // TODO: 적에게 damage 적용
-        ProjectLogger.UI($"Blade 적중: {other.name}, damage={damage}");
+        if (_hasHit)
+            return;
+
+        EnemyHealth enemyHealth = other.GetComponentInParent<EnemyHealth>();
+
+        if (enemyHealth == null)
+            return;
+
+        _hasHit = true;
+
+        enemyHealth.TakeDamage(damage);
         Destroy(gameObject);
     }
 }

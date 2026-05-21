@@ -8,6 +8,7 @@ public class SkillExecutor : MonoBehaviour
     [Header("Owner")]
     [SerializeField] private Transform caster;
     [SerializeField] private Transform forwardReference;
+    [SerializeField] private PlayerHealth playerHealth;
 
     [Header("Blade")]
     [SerializeField] private GameObject bladeProjectilePrefab;
@@ -36,6 +37,13 @@ public class SkillExecutor : MonoBehaviour
         caster = transform;
         forwardReference = transform;
         dashRunner = GetComponent<DashSkillRunner>();
+        playerHealth = GetComponent<PlayerHealth>();
+    }
+
+    private void Awake()
+    {
+        if (playerHealth == null)
+            playerHealth = GetComponent<PlayerHealth>();
     }
 
     public SkillCastResult Execute(SkillId skillId)
@@ -44,6 +52,11 @@ public class SkillExecutor : MonoBehaviour
         {
             ProjectLogger.Error("SkillExecutor: caster가 연결되지 않았습니다.");
             return SkillCastResult.Fail("시전자 정보가 연결되지 않았습니다.");
+        }
+
+        if (playerHealth != null && playerHealth.IsDead)
+        {
+            return SkillCastResult.Fail("플레이어가 사망하여 스킬을 사용할 수 없습니다.");
         }
 
         switch (skillId)

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StormSkillZone : MonoBehaviour
@@ -6,7 +7,7 @@ public class StormSkillZone : MonoBehaviour
     [SerializeField] private float tickInterval = 0.5f;
     [SerializeField] private float radius = 2.5f;
     [SerializeField] private float pullStrength = 2f;
-    [SerializeField] private int tickDamage = 5;
+    [SerializeField] private float tickDamage = 5f;
 
     private float _tickTimer;
 
@@ -29,6 +30,7 @@ public class StormSkillZone : MonoBehaviour
     private void ApplyStormEffect()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, radius);
+        HashSet<EnemyHealth> damagedEnemies = new HashSet<EnemyHealth>();
 
         foreach (Collider hit in hits)
         {
@@ -38,8 +40,12 @@ public class StormSkillZone : MonoBehaviour
                 hit.attachedRigidbody.AddForce(dirToCenter * pullStrength, ForceMode.Acceleration);
             }
 
-            // TODO: 적 판별 후 실제 도트 대미지 처리
-            ProjectLogger.UI($"Storm 영향 대상: {hit.name}, tickDamage={tickDamage}");
+            EnemyHealth enemyHealth = hit.GetComponentInParent<EnemyHealth>();
+
+            if (enemyHealth != null && damagedEnemies.Add(enemyHealth))
+            {
+                enemyHealth.TakeDamage(tickDamage);
+            }
         }
     }
 

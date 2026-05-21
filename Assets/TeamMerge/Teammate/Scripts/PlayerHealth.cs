@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public Slider Player_HP_Slider;     // 화면에 표시되는 Player_HP_Slider UI
 
     private bool isDead = false;        // 중복 사망 방지용 플래그
+    public bool IsDead => isDead;
 
     void Start()
     {
