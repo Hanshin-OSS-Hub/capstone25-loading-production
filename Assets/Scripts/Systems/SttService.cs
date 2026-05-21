@@ -15,7 +15,7 @@ public class SttService : MonoBehaviour
             ProjectLogger.Error("SttService: recorder가 연결되지 않았습니다.");
 
             return OperationResult<bool>.Fail(
-                ConversationErrorType.Unknown,
+                SystemErrorType.Unknown,
                 "녹음 모듈이 연결되지 않았습니다."
             );
         }
@@ -29,7 +29,7 @@ public class SttService : MonoBehaviour
             ProjectLogger.Error($"녹음 시작 중 예외 발생: {e.Message}");
 
             return OperationResult<bool>.Fail(
-                ConversationErrorType.STTFailed,
+                SystemErrorType.STTFailed,
                 "녹음을 시작하지 못했습니다."
             );
         }
@@ -42,7 +42,7 @@ public class SttService : MonoBehaviour
             ProjectLogger.Error("SttService: recorder 또는 transcriber가 연결되지 않았습니다.");
 
             return OperationResult<string>.Fail(
-                ConversationErrorType.Unknown,
+                SystemErrorType.Unknown,
                 "음성 인식 모듈이 연결되지 않았습니다."
             );
         }
@@ -76,7 +76,7 @@ public class SttService : MonoBehaviour
             ProjectLogger.Error($"STT 서비스 처리 중 예외 발생: {e.Message}");
 
             return OperationResult<string>.Fail(
-                ConversationErrorType.STTFailed,
+                SystemErrorType.STTFailed,
                 "음성 인식 처리 중 오류가 발생했습니다."
             );
         }

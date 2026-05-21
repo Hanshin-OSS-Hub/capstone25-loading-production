@@ -13,7 +13,7 @@ public class WhisperTranscriber : MonoBehaviour
         {
             ProjectLogger.Error("WhisperManager가 연결되지 않았습니다.");
             return OperationResult<string>.Fail(
-                ConversationErrorType.STTFailed,
+                SystemErrorType.STTFailed,
                 "음성 인식 모듈이 연결되지 않았습니다."
             );
         }
@@ -22,7 +22,7 @@ public class WhisperTranscriber : MonoBehaviour
         {
             ProjectLogger.Warning("전사할 오디오 데이터가 비어 있습니다.");
             return OperationResult<string>.Fail(
-                ConversationErrorType.STTFailed,
+                SystemErrorType.STTFailed,
                 "녹음된 음성이 없습니다."
             );
         }
@@ -41,7 +41,7 @@ public class WhisperTranscriber : MonoBehaviour
             {
                 ProjectLogger.Warning("음성 인식 결과가 null입니다.");
                 return OperationResult<string>.Fail(
-                    ConversationErrorType.STTFailed,
+                    SystemErrorType.STTFailed,
                     "음성 인식 결과를 가져오지 못했습니다."
                 );
             }
@@ -50,7 +50,7 @@ public class WhisperTranscriber : MonoBehaviour
             {
                 ProjectLogger.Warning("음성 인식 결과가 비어 있습니다.");
                 return OperationResult<string>.Fail(
-                    ConversationErrorType.EmptySTTResult,
+                    SystemErrorType.EmptySTTResult,
                     "음성이 인식되지 않았습니다."
                 );
             }
@@ -63,7 +63,7 @@ public class WhisperTranscriber : MonoBehaviour
             ProjectLogger.Error($"STT 처리 중 예외 발생: {e.Message}");
 
             return OperationResult<string>.Fail(
-                ConversationErrorType.STTFailed,
+                SystemErrorType.STTFailed,
                 "음성 인식 중 오류가 발생했습니다."
             );
         }

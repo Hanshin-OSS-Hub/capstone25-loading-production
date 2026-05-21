@@ -1,4 +1,4 @@
-public enum ConversationErrorType
+public enum SystemErrorType
 {
     None,
     NoMicrophone,
@@ -6,8 +6,6 @@ public enum ConversationErrorType
     EmptyRecording,
     STTFailed,
     EmptySTTResult,
-    LLMRequestFailed,
-    EmptyLLMResponse,
     ParsingFailed,
     Unknown
 }

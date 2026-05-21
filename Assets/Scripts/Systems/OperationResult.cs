@@ -2,7 +2,7 @@ public class OperationResult<T>
 {
     public bool IsSuccess { get; private set; }
     public T Data { get; private set; }
-    public ConversationErrorType ErrorType { get; private set; }
+    public SystemErrorType ErrorType { get; private set; }
     public string ErrorMessage { get; private set; }
 
     private OperationResult() { }
@@ -13,12 +13,12 @@ public class OperationResult<T>
         {
             IsSuccess = true,
             Data = data,
-            ErrorType = ConversationErrorType.None,
+            ErrorType = SystemErrorType.None,
             ErrorMessage = string.Empty
         };
     }
 
-    public static OperationResult<T> Fail(ConversationErrorType errorType, string errorMessage)
+    public static OperationResult<T> Fail(SystemErrorType errorType, string errorMessage)
     {
         return new OperationResult<T>
         {

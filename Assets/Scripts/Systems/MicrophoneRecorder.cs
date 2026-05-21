@@ -35,9 +35,9 @@ public class MicrophoneRecorder : MonoBehaviour
             ProjectLogger.Warning("마이크가 설정되지 않았습니다.");
 
             return OperationResult<bool>.Fail(
-                ConversationErrorType.NoMicrophone,
+                SystemErrorType.NoMicrophone,
                 SystemMessageProvider.GetErrorMessage(
-                    ConversationErrorType.NoMicrophone
+                    SystemErrorType.NoMicrophone
                 )
             );
         }
@@ -54,9 +54,9 @@ public class MicrophoneRecorder : MonoBehaviour
             ProjectLogger.Error("녹음을 시작하지 못했습니다.");
 
             return OperationResult<bool>.Fail(
-                ConversationErrorType.RecordingFailed,
+                SystemErrorType.RecordingFailed,
                 SystemMessageProvider.GetErrorMessage(
-                    ConversationErrorType.RecordingFailed
+                    SystemErrorType.RecordingFailed
                 )
             );
         }
@@ -73,9 +73,9 @@ public class MicrophoneRecorder : MonoBehaviour
             ProjectLogger.Warning("녹음 중이 아닌 상태에서 종료 요청이 들어왔습니다.");
 
             return OperationResult<AudioRecordingData>.Fail(
-                ConversationErrorType.RecordingFailed,
+                SystemErrorType.RecordingFailed,
                 SystemMessageProvider.GetErrorMessage(
-                    ConversationErrorType.RecordingFailed
+                    SystemErrorType.RecordingFailed
                 )
             );
         }
@@ -91,9 +91,9 @@ public class MicrophoneRecorder : MonoBehaviour
             ProjectLogger.Warning("녹음 데이터가 없습니다.");
 
             return OperationResult<AudioRecordingData>.Fail(
-                ConversationErrorType.EmptyRecording,
+                SystemErrorType.EmptyRecording,
                 SystemMessageProvider.GetErrorMessage(
-                    ConversationErrorType.EmptyRecording
+                    SystemErrorType.EmptyRecording
                 )
             );
         }
