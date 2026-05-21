@@ -4,12 +4,12 @@ using UnityEngine;
 public class StormSkillZone : MonoBehaviour
 {
     [SerializeField] private float duration = 5f;
-    [SerializeField] private float tickInterval = 0.5f;
+    [SerializeField] private float damageInterval = 1f;
     [SerializeField] private float radius = 2.5f;
     [SerializeField] private float pullStrength = 2f;
-    [SerializeField] private float tickDamage = 5f;
+    [SerializeField] private float damagePerSecond = 5f;
 
-    private float _tickTimer;
+    private float _damageTimer;
 
     private void Start()
     {
@@ -18,11 +18,11 @@ public class StormSkillZone : MonoBehaviour
 
     private void Update()
     {
-        _tickTimer += Time.deltaTime;
+        _damageTimer += Time.deltaTime;
 
-        if (_tickTimer >= tickInterval)
+        if (_damageTimer >= damageInterval)
         {
-            _tickTimer = 0f;
+            _damageTimer = 0f;
             ApplyStormEffect();
         }
     }
@@ -34,17 +34,20 @@ public class StormSkillZone : MonoBehaviour
 
         foreach (Collider hit in hits)
         {
+            EnemyHealth enemyHealth = hit.GetComponentInParent<EnemyHealth>();
+
+            if (enemyHealth == null)
+                continue;
+
             if (hit.attachedRigidbody != null)
             {
                 Vector3 dirToCenter = (transform.position - hit.transform.position).normalized;
                 hit.attachedRigidbody.AddForce(dirToCenter * pullStrength, ForceMode.Acceleration);
             }
 
-            EnemyHealth enemyHealth = hit.GetComponentInParent<EnemyHealth>();
-
-            if (enemyHealth != null && damagedEnemies.Add(enemyHealth))
+            if (damagedEnemies.Add(enemyHealth))
             {
-                enemyHealth.TakeDamage(tickDamage);
+                enemyHealth.TakeDamage(damagePerSecond);
             }
         }
     }

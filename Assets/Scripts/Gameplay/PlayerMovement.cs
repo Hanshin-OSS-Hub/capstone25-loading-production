@@ -31,8 +31,7 @@ public class PlayerMovement : MonoBehaviour
         if (animator == null) animator = GetComponentInChildren<Animator>();
 
         speedHash = Animator.StringToHash("Speed");
-        hasSpeedParameter = HasAnimatorParameter(animator, speedHash);
-
+        hasSpeedParameter = HasAnimatorParameter(animator, "Speed", AnimatorControllerParameterType.Float);
         if (Camera.main != null)
         {
             cameraScript = Camera.main.GetComponent<CameraMovement>();
@@ -123,31 +122,45 @@ public class PlayerMovement : MonoBehaviour
     // 외부에서 호출하는 사망 처리 메서드
     public void Die()
     {
-        if (isDead) return;
-        isDead = true;
-        
-        // 사망 애니메이션 재생 및 루트 모션 강제 활성화
-        if (animator != null)
-        {
-            animator.applyRootMotion = true; 
-            animator.SetTrigger("Dead"); 
-            animator.SetFloat(speedHash, 0f);
-        }
+        if (isDead)
+            return;
 
+        isDead = true;
         velocity = Vector3.zero;
 
-        // 캐릭터 컨트롤러 비활성화
-        if (controller != null) controller.enabled = false; 
+        if (animator != null)
+        {
+            animator.applyRootMotion = true;
+
+            if (HasAnimatorParameter(animator, "Dead", AnimatorControllerParameterType.Trigger))
+            {
+                animator.SetTrigger("Dead");
+            }
+            else
+            {
+                Debug.LogWarning("PlayerMovement_: Animator에 'Dead' Trigger가 없습니다.");
+            }
+
+            if (HasAnimatorParameter(animator, "Speed", AnimatorControllerParameterType.Float))
+            {
+                animator.SetFloat(speedHash, 0f);
+            }
+        }
+
+        if (controller != null)
+        {
+            controller.enabled = false;
+        }
     }
 
-    private bool HasAnimatorParameter(Animator targetAnimator, int parameterHash)
+    private bool HasAnimatorParameter(Animator targetAnimator, string parameterName, AnimatorControllerParameterType parameterType)
     {
         if (targetAnimator == null)
             return false;
 
         foreach (AnimatorControllerParameter parameter in targetAnimator.parameters)
         {
-            if (parameter.nameHash == parameterHash)
+            if (parameter.name == parameterName && parameter.type == parameterType)
                 return true;
         }
 

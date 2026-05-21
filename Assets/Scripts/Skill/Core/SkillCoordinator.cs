@@ -15,7 +15,21 @@ public class SkillCoordinator : MonoBehaviour
     [Header("Result UI")]
     [SerializeField] private SkillResultView skillResultView;
 
+    [Header("Owner State")]
+    [SerializeField] private PlayerHealth playerHealth;
+
     private bool _isProcessing;
+
+    private bool IsPlayerDead()
+    {
+        return playerHealth != null && playerHealth.IsDead;
+    }
+
+    private void Awake()
+    {
+        if (playerHealth == null && skillExecutor != null)
+            playerHealth = skillExecutor.GetComponent<PlayerHealth>();
+    }
 
     private void OnEnable()
     {
@@ -39,6 +53,14 @@ public class SkillCoordinator : MonoBehaviour
 
     private void HandleSkillPressed()
     {
+        if (IsPlayerDead())
+        {
+            if (skillResultView != null)
+                skillResultView.ShowFailed("플레이어가 사망하여 스킬을 사용할 수 없습니다.");
+
+            return;
+        }
+        
         if (_isProcessing)
         {
             ProjectLogger.Warning(SkillMessages.Processing);
@@ -70,6 +92,17 @@ public class SkillCoordinator : MonoBehaviour
 
     private async void HandleSkillReleased()
     {
+        if (IsPlayerDead())
+        {
+            if (sttService != null)
+                sttService.CancelRecording();
+
+            if (skillResultView != null)
+                skillResultView.ShowFailed("플레이어가 사망하여 스킬을 사용할 수 없습니다.");
+
+            return;
+        }
+
         if (_isProcessing)
         {
             ProjectLogger.Warning(SkillMessages.Processing);

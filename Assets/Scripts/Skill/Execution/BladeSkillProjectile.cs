@@ -31,7 +31,6 @@ public class BladeSkillProjectile : MonoBehaviour
             return;
 
         _hasHit = true;
-
         enemyHealth.TakeDamage(damage);
         Destroy(gameObject);
     }
