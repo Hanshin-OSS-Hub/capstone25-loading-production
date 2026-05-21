@@ -8,7 +8,7 @@ public class CameraMovement : MonoBehaviour
     public Transform target;           // 카메라가 따라다닐 타겟 (플레이어)
 
     [Header("마인크래프트식 3인칭 시점 설정")]
-    public Vector3 offset = new Vector3(0f, 0.5f, 2.5f); // 타겟 중심점으로부터의 거리 및 높이 오프셋 (X값 조절 시 숄더뷰 가능)
+    public Vector3 offset = new Vector3(0f, 0f, 3f); // 타겟 중심점으로부터의 거리 및 높이 오프셋 (X값 조절 시 숄더뷰 가능)
 
     [Header("마우스 화면 회전 설정")]
     public bool useMouseRotation = true; // 마우스 이동에 따른 카메라 회전 활성화 여부

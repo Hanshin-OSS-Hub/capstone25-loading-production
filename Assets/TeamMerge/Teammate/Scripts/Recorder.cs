@@ -14,8 +14,8 @@ public class Recorder : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) ToggleRecording();
-        if (Input.GetKeyDown(KeyCode.T)) TakeScreenshot();
+        if (Input.GetKeyDown(KeyCode.O)) ToggleRecording();
+        if (Input.GetKeyDown(KeyCode.P)) TakeScreenshot();
     }
 
     void ToggleRecording()
