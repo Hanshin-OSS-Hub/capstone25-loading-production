@@ -18,7 +18,7 @@ public class SkillExecutor : MonoBehaviour
 
     [Header("Storm")]
     [SerializeField] private GameObject stormPrefab;
-    [SerializeField] private float stormSpawnDistance = 4f;
+    [SerializeField] private float stormSpawnDistance = 7f;
 
     [Header("Barrier")]
     [SerializeField] private GameObject barrierPrefab;
