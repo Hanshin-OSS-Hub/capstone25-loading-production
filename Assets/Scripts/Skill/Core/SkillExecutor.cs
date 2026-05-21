@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class SkillExecutor : MonoBehaviour
 {
+    private const float DefaultSkillHeightOffset = 1f;
+    private const float StormMinHeightOffset = 0.5f;
+
     [Header("Owner")]
     [SerializeField] private Transform caster;
     [SerializeField] private Transform forwardReference;
@@ -9,7 +12,9 @@ public class SkillExecutor : MonoBehaviour
     [Header("Blade")]
     [SerializeField] private GameObject bladeProjectilePrefab;
     [SerializeField] private int bladeCount = 4;
-    [SerializeField] private float bladeSpawnRadius = 1.2f;
+    [SerializeField] private float bladeHorizontalSpacing = 0.8f;
+    [SerializeField] private float bladeVerticalSpacing = 0.45f;
+    [SerializeField] private float bladeForwardOffset = 1.0f;
 
     [Header("Storm")]
     [SerializeField] private GameObject stormPrefab;
@@ -64,19 +69,13 @@ public class SkillExecutor : MonoBehaviour
     private SkillCastResult ExecuteBlade()
     {
         if (bladeProjectilePrefab == null)
-        {
-            string skillName = SkillNameProvider.GetKoreanName(SkillId.Blade);
-            ProjectLogger.Warning($"{skillName} 프리팹이 연결되지 않았습니다.");
-            return SkillCastResult.Fail($"{skillName} 프리팹이 연결되지 않았습니다.");
-        }
+            return FailMissingPrefab(SkillId.Blade);
 
         Vector3 forward = GetAimDirection();
 
         for (int i = 0; i < bladeCount; i++)
         {
-            float angle = (360f / bladeCount) * i;
-            Vector3 offset = Quaternion.Euler(0f, angle, 0f) * Vector3.forward * bladeSpawnRadius;
-            Vector3 spawnPosition = caster.position + Vector3.up * 1f + offset;
+            Vector3 spawnPosition = GetBladeSpawnPosition(i, forward);
 
             GameObject blade = Instantiate(
                 bladeProjectilePrefab,
@@ -84,11 +83,7 @@ public class SkillExecutor : MonoBehaviour
                 Quaternion.LookRotation(forward)
             );
 
-            BladeSkillProjectile projectile = blade.GetComponent<BladeSkillProjectile>();
-            if (projectile != null)
-            {
-                projectile.Initialize(forward);
-            }
+            InitializeBladeProjectile(blade, forward);
         }
 
         return SkillCastResult.Success(SkillNameProvider.GetCastMessage(SkillId.Blade));
@@ -97,23 +92,11 @@ public class SkillExecutor : MonoBehaviour
     private SkillCastResult ExecuteStorm()
     {
         if (stormPrefab == null)
-        {
-            string skillName = SkillNameProvider.GetKoreanName(SkillId.Storm);
-            ProjectLogger.Warning($"{skillName} 프리팹이 연결되지 않았습니다.");
-            return SkillCastResult.Fail($"{skillName} 프리팹이 연결되지 않았습니다.");
-        }
+            return FailMissingPrefab(SkillId.Storm);
 
         Vector3 forward = GetAimDirection();
+        Vector3 spawnPosition = GetStormSpawnPosition(forward);
 
-        Vector3 spawnPosition = caster.position + Vector3.up * 1f + forward * stormSpawnDistance;
-        
-        float minY = caster.position.y + 0.5f;
-
-        if (spawnPosition.y < minY)
-        {
-            spawnPosition.y = minY;
-        }
-        
         Instantiate(stormPrefab, spawnPosition, Quaternion.identity);
 
         return SkillCastResult.Success(SkillNameProvider.GetCastMessage(SkillId.Storm));
@@ -122,15 +105,10 @@ public class SkillExecutor : MonoBehaviour
     private SkillCastResult ExecuteBarrier()
     {
         if (barrierPrefab == null)
-        {
-            string skillName = SkillNameProvider.GetKoreanName(SkillId.Barrier);
-            ProjectLogger.Warning($"{skillName} 프리팹이 연결되지 않았습니다.");
-            return SkillCastResult.Fail($"{skillName} 프리팹이 연결되지 않았습니다.");
-        }
+            return FailMissingPrefab(SkillId.Barrier);
 
         Vector3 forward = GetHorizontalDirection();
-
-        Vector3 spawnPosition = caster.position + forward * barrierSpawnDistance;
+        Vector3 spawnPosition = GetBarrierSpawnPosition(forward);
         Quaternion rotation = Quaternion.LookRotation(forward);
 
         Instantiate(barrierPrefab, spawnPosition, rotation);
@@ -157,6 +135,75 @@ public class SkillExecutor : MonoBehaviour
         );
 
         return SkillCastResult.Success(SkillNameProvider.GetCastMessage(SkillId.Dash));
+    }
+
+    private SkillCastResult FailMissingPrefab(SkillId skillId)
+    {
+        string skillName = SkillNameProvider.GetKoreanName(skillId);
+        string message = $"{skillName} 프리팹이 연결되지 않았습니다.";
+
+        ProjectLogger.Warning(message);
+        return SkillCastResult.Fail(message);
+    }
+
+    private void InitializeBladeProjectile(GameObject blade, Vector3 direction)
+    {
+        if (blade == null)
+            return;
+
+        BladeSkillProjectile projectile = blade.GetComponent<BladeSkillProjectile>();
+
+        if (projectile != null)
+        {
+            projectile.Initialize(direction);
+        }
+    }
+
+    private Vector3 GetBladeSpawnPosition(int index, Vector3 forward)
+    {
+        Transform dirRef = forwardReference != null ? forwardReference : caster;
+
+        Vector3 right = dirRef.right;
+        Vector3 up = dirRef.up;
+
+        Vector2[] offsets =
+        {
+            new Vector2(-1f,  1f), // 좌상
+            new Vector2( 1f,  1f), // 우상
+            new Vector2(-1f, -1f), // 좌하
+            new Vector2( 1f, -1f)  // 우하
+        };
+
+        Vector2 selectedOffset = offsets[index % offsets.Length];
+
+        Vector3 spawnOffset =
+            right * selectedOffset.x * bladeHorizontalSpacing +
+            up * selectedOffset.y * bladeVerticalSpacing +
+            forward * bladeForwardOffset;
+
+        return caster.position + Vector3.up * DefaultSkillHeightOffset + spawnOffset;
+    }
+
+    private Vector3 GetStormSpawnPosition(Vector3 forward)
+    {
+        Vector3 spawnPosition =
+            caster.position +
+            Vector3.up * DefaultSkillHeightOffset +
+            forward * stormSpawnDistance;
+
+        float minY = caster.position.y + StormMinHeightOffset;
+
+        if (spawnPosition.y < minY)
+        {
+            spawnPosition.y = minY;
+        }
+
+        return spawnPosition;
+    }
+
+    private Vector3 GetBarrierSpawnPosition(Vector3 forward)
+    {
+        return caster.position + forward * barrierSpawnDistance;
     }
 
     private Vector3 GetAimDirection()
