@@ -120,7 +120,6 @@ public class SkillCoordinator : MonoBehaviour
                 return;
             }
 
-            string skillName = SkillNameProvider.GetKoreanName(skillId);
             SkillCastResult castResult = skillExecutor.Execute(skillId);
 
             if (!castResult.IsSuccess)
