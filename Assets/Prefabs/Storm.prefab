@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 5
-  damageInterval: 1
+  damageInterval: 0.3
   radius: 2.5
-  pullStrength: 2
-  damagePerSecond: 5
+  pullStrength: 0.35
+  damagePerTick: 1
 --- !u!82 &1072393936758961694
 AudioSource:
   m_ObjectHideFlags: 0

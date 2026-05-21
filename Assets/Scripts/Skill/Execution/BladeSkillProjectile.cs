@@ -1,17 +1,24 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BladeSkillProjectile : MonoBehaviour
 {
     [SerializeField] private float speed = 12f;
     [SerializeField] private float lifeTime = 2f;
-    [SerializeField] private float damage = 10f;
+    [SerializeField] private float damage = 3f;
 
     private Vector3 _moveDirection;
-    private bool _hasHit;
+    private HashSet<EnemyHealth> _sharedHitEnemies;
 
     public void Initialize(Vector3 direction)
     {
+        Initialize(direction, null);
+    }
+
+    public void Initialize(Vector3 direction, HashSet<EnemyHealth> sharedHitEnemies)
+    {
         _moveDirection = direction.normalized;
+        _sharedHitEnemies = sharedHitEnemies;
         Destroy(gameObject, lifeTime);
     }
 
@@ -22,15 +29,17 @@ public class BladeSkillProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_hasHit)
-            return;
-
         EnemyHealth enemyHealth = other.GetComponentInParent<EnemyHealth>();
 
         if (enemyHealth == null)
             return;
 
-        _hasHit = true;
+        if (_sharedHitEnemies != null && !_sharedHitEnemies.Add(enemyHealth))
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         enemyHealth.TakeDamage(damage);
         Destroy(gameObject);
     }

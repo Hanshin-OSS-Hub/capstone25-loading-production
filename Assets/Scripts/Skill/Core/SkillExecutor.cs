@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillExecutor : MonoBehaviour
@@ -85,6 +86,7 @@ public class SkillExecutor : MonoBehaviour
             return FailMissingPrefab(SkillId.Blade);
 
         Vector3 forward = GetAimDirection();
+        HashSet<EnemyHealth> sharedHitEnemies = new HashSet<EnemyHealth>();
 
         for (int i = 0; i < bladeCount; i++)
         {
@@ -96,7 +98,7 @@ public class SkillExecutor : MonoBehaviour
                 Quaternion.LookRotation(forward)
             );
 
-            InitializeBladeProjectile(blade, forward);
+            InitializeBladeProjectile(blade, forward, sharedHitEnemies);
         }
 
         return SkillCastResult.Success(SkillNameProvider.GetCastMessage(SkillId.Blade));
@@ -159,7 +161,10 @@ public class SkillExecutor : MonoBehaviour
         return SkillCastResult.Fail(message);
     }
 
-    private void InitializeBladeProjectile(GameObject blade, Vector3 direction)
+    private void InitializeBladeProjectile(
+        GameObject blade,
+        Vector3 direction,
+        HashSet<EnemyHealth> sharedHitEnemies)
     {
         if (blade == null)
             return;
@@ -168,7 +173,7 @@ public class SkillExecutor : MonoBehaviour
 
         if (projectile != null)
         {
-            projectile.Initialize(direction);
+            projectile.Initialize(direction, sharedHitEnemies);
         }
     }
 
