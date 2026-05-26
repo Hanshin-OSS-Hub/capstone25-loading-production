@@ -3,6 +3,7 @@ using UnityEngine;
 public class SkillDebugInput : MonoBehaviour
 {
     [SerializeField] private SkillExecutor skillExecutor;
+    [SerializeField] private SkillCooldownManager cooldownManager;
     [SerializeField] private SkillCameraShake cameraShake;
     [SerializeField] private HitStopController hitStop;
     [SerializeField] private SkillResultView skillResultView;
@@ -27,6 +28,20 @@ public class SkillDebugInput : MonoBehaviour
 
     private void DebugCast(SkillId skillId)
     {
+        if (cooldownManager != null && !cooldownManager.CanUse(skillId))
+        {
+            float remainingTime = cooldownManager.GetRemainingTime(skillId);
+            string skillName = SkillNameProvider.GetKoreanName(skillId);
+            string message = $"{skillName} 스킬은 쿨타임 중입니다. ({remainingTime:F1}초)";
+
+            ProjectLogger.Warning(message);
+
+            if (skillResultView != null)
+                skillResultView.ShowFailed(message);
+
+            return;
+        }
+
         SkillCastResult result = skillExecutor.Execute(skillId);
 
         if (!result.IsSuccess)
@@ -35,9 +50,12 @@ public class SkillDebugInput : MonoBehaviour
 
             if (skillResultView != null)
                 skillResultView.ShowFailed(result.Message);
-                
+
             return;
         }
+
+        if (cooldownManager != null)
+            cooldownManager.StartCooldown(skillId);
 
         if (skillResultView != null)
             skillResultView.ShowSkillActivated(skillId);
