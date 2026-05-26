@@ -1,11 +1,11 @@
-# 병합 준비 체크리스트
+# 병합 / 최종 정리 체크리스트
 
-이 문서는 `stt-skill-game` 프로젝트의 `merge-teammate-project` 브랜치에서 진행한 팀원 씬 통합 결과를 `main`에 병합하기 전에 확인해야 할 항목을 정리한 문서입니다.
+이 문서는 `stt-skill-game` 프로젝트가 팀원 씬 통합, `main` 병합, 폴더 구조 정리까지 완료된 뒤 최종 상태를 확인하기 위한 체크리스트입니다.
 
 현재 프로젝트의 핵심 범위는 다음과 같습니다.
 
 ```text
-팀원 제공 AoF 씬 / 전투 시스템
+팀원 제공 AoF 씬 / 전투 시스템 기반 MainGame
 + Whisper Local STT
 + 음성 명령 스킬 입력
 + 키보드 스킬 테스트
@@ -19,7 +19,7 @@ LLM, Gemini, 무닌, 대화 시스템, 말풍선 UI는 현재 범위에서 제�
 
 ---
 
-# 1. 병합 전 필수 확인
+# 1. 최종 상태 기준
 
 ## 1-1. Unity 버전
 
@@ -29,20 +29,10 @@ LLM, Gemini, 무닌, 대화 시스템, 말풍선 UI는 현재 범위에서 제�
 Unity 2022.3.62f3
 ```
 
-팀 프로젝트와 Unity 버전이 다르면 아래 문제가 생길 수 있습니다.
-
-```text
-패키지 버전 차이
-씬/프리팹 직렬화 변경
-ProjectSettings 자동 변경
-ShaderGraph / URP 설정 변경
-```
-
-병합 전 확인:
+확인:
 
 ```text
 [ ] Unity 2022.3.62f3 또는 같은 2022.3 LTS 계열 사용
-[ ] 병합 전 별도 브랜치에서 작업
 [ ] Unity Console 빨간 에러 없음
 [ ] Missing Script 없음
 [ ] Git working tree clean 상태 확인
@@ -52,44 +42,54 @@ ShaderGraph / URP 설정 변경
 
 # 2. 최종 사용 씬
 
-현재 최종 통합 씬은 아래 파일입니다.
+현재 최종 메인 씬은 아래 파일입니다.
 
 ```text
-Assets/Scenes/FinMergeScene.unity
+Assets/Scenes/MainGame.unity
 ```
 
-기존 `MainTechnologyScene`은 STT / 스킬 단독 검증용에 가깝고, 현재 통합 결과 확인은 `FinMergeScene` 기준으로 진행합니다.
+이전 테스트 씬과 팀원 원본 씬은 아래에 보관합니다.
+
+```text
+Assets/Scenes/Archive/
+```
 
 체크:
 
 ```text
-[ ] FinMergeScene 정상 로드
+[ ] MainGame 정상 로드
 [ ] Play 실행 가능
 [ ] Console 빨간 에러 없음
 [ ] Missing Script 없음
-[ ] 팀원 보스 / 플레이어 / UI / BGM / STT 스킬 정상 동작
+[ ] 보스 / 플레이어 / UI / BGM / STT 스킬 정상 동작
+[ ] Archive 씬은 최종 실행 씬이 아니라 보관용임을 확인
 ```
 
 ---
 
-# 3. 병합해야 할 주요 폴더 / 파일
+# 3. 주요 폴더 / 파일
 
 ## 3-1. Scripts
 
-아래 폴더는 현재 기능의 핵심입니다.
+현재 기능의 핵심 스크립트 폴더는 다음과 같습니다.
 
 ```text
+Assets/Scripts/Combat/
 Assets/Scripts/Debug/
 Assets/Scripts/Gameplay/
 Assets/Scripts/Skill/
 Assets/Scripts/Systems/
 Assets/Scripts/UI/
-Assets/TeamMerge/Teammate/Scripts/
 ```
 
 핵심 스크립트:
 
 ```text
+Combat/AttackTrigger.cs
+Combat/EnemyHealth.cs
+Combat/EnemyMovement.cs
+Combat/PlayerHealth.cs
+
 Debug/ProjectLogger.cs
 
 Gameplay/CameraMovement.cs
@@ -100,6 +100,7 @@ Systems/AudioRecordingData.cs
 Systems/BgmController.cs
 Systems/MicrophoneRecorder.cs
 Systems/OperationResult.cs
+Systems/Recorder.cs
 Systems/SttService.cs
 Systems/SystemErrorType.cs
 Systems/SystemMessageProvider.cs
@@ -124,21 +125,15 @@ Skill/Parsing/SkillCommandParser.cs
 
 UI/SkillResultView.cs
 UI/SkillCooldownIconView.cs
-
-TeamMerge/Teammate/Scripts/EnemyHealth.cs
-TeamMerge/Teammate/Scripts/EnemyMovement.cs
-TeamMerge/Teammate/Scripts/PlayerHealth.cs
-TeamMerge/Teammate/Scripts/AttackTrigger.cs
-TeamMerge/Teammate/Scripts/Recorder.cs
 ```
 
 체크:
 
 ```text
 [ ] 위 스크립트 폴더 전체 포함
-[ ] Unity에서 .meta 파일과 함께 관리
-[ ] 파일명과 클래스명 일치 확인
-[ ] Console 컴파일 에러 없음 확인
+[ ] .meta 파일과 함께 관리됨
+[ ] 파일명과 클래스명 일치
+[ ] Console 컴파일 에러 없음
 ```
 
 ---
@@ -153,10 +148,11 @@ Assets/Prefabs/Storm.prefab
 Assets/Prefabs/Barrier.prefab
 ```
 
-팀원 캐릭터 / 보스 프리팹:
+캐릭터 / 보스 관련 프리팹:
 
 ```text
-Assets/TeamMerge/Teammate/Prefabs/
+Assets/Prefabs/Meshy_AI_Elderwood_Sentinel_biped/
+Assets/Prefabs/Meshy_AI_Rugged_Drifter_biped/
 ```
 
 체크:
@@ -165,8 +161,8 @@ Assets/TeamMerge/Teammate/Prefabs/
 [ ] Blade 프리팹 포함
 [ ] Storm 프리팹 포함
 [ ] Barrier 프리팹 포함
-[ ] 팀원 Player / Boss 관련 프리팹 포함
-[ ] 각 프리팹의 Material / Texture / VFX 참조 누락 없음
+[ ] Player / Boss 관련 프리팹 포함
+[ ] Material / Texture / VFX 참조 누락 없음
 [ ] Missing Script 없음
 [ ] 방패 프리팹의 Enemy 차단 동작 정상
 ```
@@ -175,16 +171,14 @@ Assets/TeamMerge/Teammate/Prefabs/
 
 ## 3-3. Materials / VFX / Textures
 
-스킬 프리팹과 팀원 씬이 참조하는 Material, Texture, VFX도 함께 필요합니다.
-
 현재 사용되는 주요 에셋:
 
 ```text
 Assets/Materials/
-Assets/Eric VFX Studio/
+Assets/__Eric VFX Studio/
 Assets/Pure Poly/
 Assets/Textures/
-Assets/TeamMerge/Teammate/Prefabs/
+Assets/Prefabs/
 ```
 
 스킬 UI 이미지:
@@ -200,10 +194,10 @@ Assets/Textures/dash_UI.png
 
 ```text
 [ ] 스킬 프리팹에 연결된 Material 포함
-[ ] 팀원 씬 Material / Texture 포함
+[ ] 캐릭터 / 보스 Material / Texture 포함
 [ ] 스킬 UI 이미지 포함
 [ ] VFX 관련 Material / Animator / Texture 포함
-[ ] 병합 후 프리팹이 분홍색으로 깨지지 않는지 확인
+[ ] 프리팹이 분홍색으로 깨지지 않음
 ```
 
 ---
@@ -235,15 +229,24 @@ Enemy_HP_Slider
 
 ---
 
-## 3-5. Sounds / BGM
+## 3-5. Sounds / BGM / SFX
 
-보스 조우 BGM 전환에 필요한 파일:
+현재 사운드 파일은 아래 폴더에 정리되어 있습니다.
 
 ```text
-Assets/TeamMerge/Teammate/Sounds/mainBGM.mp3
-Assets/TeamMerge/Teammate/Sounds/Wierd View.mp3
-Assets/TeamMerge/Teammate/Sounds/Wild Hunt.mp3
-Assets/TeamMerge/Teammate/Resources/Sounds/kaak.mp3
+Assets/Sounds/
+```
+
+주요 파일:
+
+```text
+Assets/Sounds/mainBGM.mp3
+Assets/Sounds/Wierd View.mp3
+Assets/Sounds/Wild Hunt.mp3
+Assets/Sounds/blade.mp3
+Assets/Sounds/barrier.wav
+Assets/Sounds/dash.wav
+Assets/Sounds/wind.wav
 ```
 
 체크:
@@ -255,11 +258,30 @@ Assets/TeamMerge/Teammate/Resources/Sounds/kaak.mp3
 [ ] 전투 BGM 연결
 [ ] 보스 조우 시 전투 BGM 전환
 [ ] 보스와 멀어지면 평시 BGM 복귀
+[ ] 스킬 효과음이 필요한 위치에 정상 연결됨
 ```
 
 ---
 
-## 3-6. Whisper 모델 파일
+## 3-6. Settings
+
+URP 및 렌더링 설정은 아래 폴더에 정리되어 있습니다.
+
+```text
+Assets/Settings/
+```
+
+체크:
+
+```text
+[ ] Project Settings > Graphics에서 URP 설정 정상
+[ ] Project Settings > Quality에서 URP 설정 정상
+[ ] 씬 / 프리팹 머티리얼이 분홍색으로 깨지지 않음
+```
+
+---
+
+## 3-7. Whisper 모델 파일
 
 Whisper 로컬 모델 파일은 GitHub에 포함되지 않습니다.
 
@@ -281,15 +303,15 @@ Assets/StreamingAssets/ggml-base.bin
 [ ] StreamingAssets 폴더 존재
 [ ] Whisper 모델 .bin 파일 직접 추가
 [ ] .gitignore에서 *.bin 제외 유지
-[ ] STT 실행 시 모델 로딩 오류 없음 확인
+[ ] STT 실행 시 모델 로딩 오류 없음
 ```
 
 ---
 
-# 4. FinMergeScene 권장 Hierarchy 구조
+# 4. MainGame 권장 Hierarchy 구조
 
 ```text
-FinMergeScene
+MainGame
 ├── Main Camera
 ├── Directional Light
 ├── EventSystem
@@ -409,7 +431,7 @@ HitStopController
 SkillCameraShake → CameraMovement
 ```
 
-`SkillCameraShake`는 자동으로 Main Camera를 찾는 보정이 있지만, 병합 안정성을 위해 Inspector에 직접 연결하는 것을 권장합니다.
+`SkillCameraShake`는 자동으로 Main Camera를 찾는 보정이 있지만, 안정성을 위해 Inspector에 직접 연결하는 것을 권장합니다.
 
 ---
 
@@ -509,13 +531,13 @@ Collider
 | C | 방패 키보드 테스트 | 5초 쿨타임 |
 | V | 돌진 키보드 테스트 | 5초 쿨타임 |
 
-병합 전 확인:
+확인:
 
 ```text
-[ ] R 키가 다른 기능과 충돌하지 않는지 확인
-[ ] Z/X/C/V 키가 팀 프로젝트 기능과 충돌하지 않는지 확인
-[ ] 마우스 카메라 제어가 기존 카메라 시스템과 충돌하지 않는지 확인
-[ ] Cursor Lock 처리 방식 확인
+[ ] R 키가 다른 기능과 충돌하지 않음
+[ ] Z/X/C/V 키가 다른 기능과 충돌하지 않음
+[ ] 마우스 카메라 제어가 정상 동작
+[ ] Cursor Lock 처리 방식 정상
 ```
 
 ---
@@ -536,19 +558,19 @@ Billboard
 config.json
 ```
 
-병합 시 다시 추가하지 않는 것을 권장합니다.
+다시 추가하지 않는 것을 권장합니다.
 
 체크:
 
 ```text
-[ ] LLM/무닌 관련 구버전 코드가 다시 들어오지 않는지 확인
+[ ] LLM/무닌 관련 구버전 코드가 다시 들어오지 않음
 [ ] 말풍선 UI가 필요하지 않다면 SpeechBubble 계열 재도입 금지
 [ ] config.json / API Key 구조 재도입 여부 확인
 ```
 
 ---
 
-# 8. 병합 후 필수 테스트
+# 8. 최종 기능 테스트
 
 ## 8-1. 이동 / 카메라
 
@@ -560,7 +582,7 @@ config.json
 [ ] 플레이어가 바닥 아래로 떨어지지 않음
 ```
 
-## 8-2. 팀원 전투 시스템
+## 8-2. 보스 전투 시스템
 
 ```text
 [ ] 보스 크기 2배 정상
@@ -648,7 +670,7 @@ BGM 전환 관련 로그가 있다면 허용
 
 ---
 
-# 9. 병합 후 우선 확인할 위험 요소
+# 9. 우선 확인할 위험 요소
 
 ## 9-1. 카메라 시스템 충돌
 
@@ -670,7 +692,7 @@ BGM 전환 관련 로그가 있다면 허용
 
 현재 일부 입력은 `UnityEngine.Input` 기반입니다.
 
-팀 프로젝트가 New Input System만 사용하는 경우, 아래 오류가 날 수 있습니다.
+프로젝트가 New Input System만 사용하는 경우, 아래 오류가 날 수 있습니다.
 
 ```text
 InvalidOperationException: You are trying to read Input using the UnityEngine.Input class...
@@ -687,68 +709,32 @@ Project Settings > Player > Active Input Handling
 
 ---
 
-## 9-3. TeamMerge 원본 폴더 정리 주의
-
-현재 `Assets/TeamMerge/Teammate/`는 팀원 원본 씬, 프리팹, 사운드, 설정, 전투 스크립트를 포함합니다.
+## 9-3. Archive / Settings / VFX 폴더 주의
 
 ```text
-Assets/TeamMerge/Teammate/
-├── Prefabs/
-├── Scenes/
-├── Scripts/
-├── Settings/
-└── Sounds/
+Assets/Scenes/Archive/
+Assets/Settings/
+Assets/__Eric VFX Studio/
 ```
-
-현재는 참조 안정성과 원본 비교를 위해 유지하는 것을 권장합니다.
 
 주의:
 
 ```text
-[ ] main 병합 전 TeamMerge 폴더 임의 삭제 금지
-[ ] AoF.unity 원본 씬은 비교 / 백업용으로 보류
+[ ] Archive 씬은 최종 실행 씬이 아니지만 원본 / 테스트 보관용으로 유지
 [ ] Settings 폴더의 URP 관련 파일은 실제 참조 여부 확인 전 삭제 금지
-[ ] Sounds 폴더는 BGM 전환에서 사용 중이므로 삭제 금지
+[ ] __Eric VFX Studio 폴더는 스킬 VFX 참조 가능성이 있으므로 삭제 금지
 ```
 
 ---
 
-# 10. 병합 추천 순서
+# 10. 최종 완료 기준
 
-```text
-1. merge-teammate-project 브랜치 최신 상태 확인
-2. FinMergeScene 최종 기능 테스트
-3. README / MERGE_CHECKLIST / FINAL_TEST_CHECKLIST 최신화
-4. main 브랜치로 이동
-5. main 최신화
-6. merge-teammate-project 병합
-7. Unity에서 main 기준 FinMergeScene 열기
-8. Console 에러 확인
-9. 키보드 스킬 테스트
-10. 음성 스킬 테스트
-11. 보스 전투 / BGM / UI 테스트
-12. 정상 확인 후 main push
-```
-
-명령어 예시:
-
-```bash
-git checkout main
-git pull origin main
-git merge merge-teammate-project
-git push origin main
-```
-
----
-
-# 11. 병합 완료 기준
-
-아래 조건을 만족하면 병합 완료로 봅니다.
+아래 조건을 만족하면 최종 정리 완료로 봅니다.
 
 ```text
 [ ] Unity Console 빨간 에러 없음
 [ ] Missing Script 없음
-[ ] FinMergeScene 정상 로드
+[ ] MainGame 정상 로드
 [ ] 이동 / 카메라 정상
 [ ] 보스 전투 정상
 [ ] Z/X/C/V 키보드 스킬 정상
@@ -761,5 +747,5 @@ git push origin main
 [ ] BGM 전환 정상
 [ ] Player 사망 처리 정상
 [ ] Whisper 모델 파일 로컬 배치 완료
-[ ] main 병합 완료
+[ ] README / 체크리스트 문서가 현재 폴더 구조와 일치
 ```
