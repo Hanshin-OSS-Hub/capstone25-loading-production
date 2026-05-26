@@ -2,7 +2,7 @@
 
 Whisper 로컬 STT를 활용해 음성 명령으로 스킬을 발동하는 Unity 기반 3D 전투 프로토타입입니다.
 
-초기에는 STT 기반 스킬 입력과 스킬 실행 구조를 독립적으로 검증하는 분할 프로젝트였고, 현재는 팀원이 제공한 씬과 전투 시스템을 통합하여 `FinMergeScene` 기준으로 플레이어 이동, 보스 전투, 음성 스킬, 키보드 스킬 테스트, UI 피드백, BGM 전환까지 함께 동작하는 상태입니다.
+초기에는 STT 기반 스킬 입력과 스킬 실행 구조를 독립적으로 검증하는 분할 프로젝트였고, 현재는 팀원이 제공한 씬과 전투 시스템을 통합하여 `MainGame` 기준으로 플레이어 이동, 보스 전투, 음성 스킬, 키보드 스킬 테스트, UI 피드백, BGM 전환까지 함께 동작하는 상태입니다.
 
 ---
 
@@ -14,7 +14,7 @@ Whisper 로컬 STT를 활용해 음성 명령으로 스킬을 발동하는 Unity
 - Input: Keyboard + Voice
 - Camera: Custom CameraMovement
 - Render Pipeline: URP
-- 최종 통합 씬: `Assets/Scenes/FinMergeScene.unity`
+- 최종 메인 씬: `Assets/Scenes/MainGame.unity`
 
 ---
 
@@ -50,9 +50,9 @@ Whisper 로컬 STT를 활용해 음성 명령으로 스킬을 발동하는 Unity
 
 ## 팀원 씬 / 전투 시스템 통합
 
-- 팀원이 제공한 `AoF` 씬을 기반으로 최종 통합 씬 `FinMergeScene` 구성
+- 팀원이 제공한 `AoF` 씬을 기반으로 최종 메인 씬 `MainGame` 구성
 - 팀원 보스 몬스터 / 플레이어 체력 UI / 공격 판정 시스템 연동
-- 스킬 피해를 팀원 `EnemyHealth`와 연결
+- 스킬 피해를 `EnemyHealth`와 연결
 - 보스 몬스터가 공격 시 제자리에서 멈춘 뒤 공격하도록 보정
 - 보스 몬스터 사망 시 공격 모션을 끊고 즉시 사망 모션으로 전환
 - 보스 몬스터 크기 2배 조정
@@ -149,11 +149,21 @@ Assets/
 ├── Prefabs/
 │   ├── Blade.prefab
 │   ├── Storm.prefab
-│   └── Barrier.prefab
+│   ├── Barrier.prefab
+│   ├── Meshy_AI_Elderwood_Sentinel_biped/
+│   └── Meshy_AI_Rugged_Drifter_biped/
 ├── Scenes/
-│   ├── MainTechnologyScene.unity
-│   └── FinMergeScene.unity
+│   ├── MainGame.unity
+│   └── Archive/
+│       ├── TEST_MapAndLogic.unity
+│       ├── TEST_SttAndSkill.unity
+│       └── AoF/
 ├── Scripts/
+│   ├── Combat/
+│   │   ├── AttackTrigger.cs
+│   │   ├── EnemyHealth.cs
+│   │   ├── EnemyMovement.cs
+│   │   └── PlayerHealth.cs
 │   ├── Debug/
 │   │   └── ProjectLogger.cs
 │   ├── Gameplay/
@@ -180,6 +190,7 @@ Assets/
 │   │   ├── BgmController.cs
 │   │   ├── MicrophoneRecorder.cs
 │   │   ├── OperationResult.cs
+│   │   ├── Recorder.cs
 │   │   ├── SttService.cs
 │   │   ├── SystemErrorType.cs
 │   │   ├── SystemMessageProvider.cs
@@ -187,13 +198,15 @@ Assets/
 │   └── UI/
 │       ├── SkillResultView.cs
 │       └── SkillCooldownIconView.cs
-├── TeamMerge/
-│   └── Teammate/
-│       ├── Prefabs/
-│       ├── Scenes/
-│       ├── Scripts/
-│       ├── Settings/
-│       └── Sounds/
+├── Settings/
+├── Sounds/
+│   ├── mainBGM.mp3
+│   ├── Wierd View.mp3
+│   ├── Wild Hunt.mp3
+│   ├── blade.mp3
+│   ├── barrier.wav
+│   ├── dash.wav
+│   └── wind.wav
 ├── Textures/
 │   ├── blade_UI.png
 │   ├── storm_UI.png
@@ -203,22 +216,22 @@ Assets/
 └── TextMesh Pro/
 ```
 
-`TeamMerge/Teammate` 폴더는 팀원 프로젝트 원본 에셋과 통합에 필요한 프리팹, 사운드, 씬, 전투 스크립트를 보관하는 영역입니다. 최종 정리 전까지 원본 비교 및 참조 안정성을 위해 유지합니다.
+`Scenes/Archive` 폴더는 이전 테스트 씬과 팀원 원본 씬을 보관하는 영역입니다. 최종 시연 및 실행은 `Assets/Scenes/MainGame.unity`를 기준으로 진행합니다.
 
 ---
 
 # 씬 구조
 
-현재 최종 통합 씬은 아래 파일입니다.
+현재 최종 메인 씬은 아래 파일입니다.
 
 ```text
-Assets/Scenes/FinMergeScene.unity
+Assets/Scenes/MainGame.unity
 ```
 
 권장 Hierarchy 구조는 다음과 같습니다.
 
 ```text
-FinMergeScene
+MainGame
 ├── Main Camera
 ├── Directional Light
 ├── EventSystem
@@ -260,7 +273,7 @@ FinMergeScene
 | EnemyHealth | 보스 체력 및 피격 처리 |
 | EnemyMovement | 보스 추격, 공격, 사망 처리 |
 | PlayerHealth | 플레이어 체력 및 사망 처리 |
-| Recorder | 팀원 제공 스크린캡쳐용 스크립트 |
+| Recorder | 스크린캡쳐용 스크립트 |
 
 ---
 
@@ -293,7 +306,7 @@ Whisper는 로컬 모델을 사용하므로 별도의 API Key가 필요하지 �
     - TextMeshPro
     - Whisper Unity 관련 패키지
     - URP
-5. `Assets/Scenes/FinMergeScene.unity` 열기
+5. `Assets/Scenes/MainGame.unity` 열기
 6. Play 실행
 7. WASD / Mouse로 이동과 카메라 확인
 8. Z/X/C/V 키보드 입력으로 스킬과 쿨타임 UI 테스트
@@ -305,7 +318,7 @@ Whisper는 로컬 모델을 사용하므로 별도의 API Key가 필요하지 �
 # 테스트 체크포인트
 
 ```text
-[ ] FinMergeScene 정상 로드
+[ ] MainGame 정상 로드
 [ ] Console 빨간 에러 없음
 [ ] Missing Script 없음
 [ ] WASD / Shift / Space / Mouse 정상
@@ -333,13 +346,14 @@ Whisper는 로컬 모델을 사용하므로 별도의 API Key가 필요하지 �
 - GameManager 역할 분리
 - 3인칭 이동 및 카메라 구조 안정화
 - 팀원 제공 씬 / 에셋 / 전투 시스템 통합
-- 최종 통합 씬 `FinMergeScene` 구성
+- 최종 메인 씬 `MainGame` 구성
+- 테스트 / 원본 씬을 `Scenes/Archive`로 정리
 - STT 기반 스킬 입력 구조 구현
 - 키보드 디버그 스킬 입력 구현
 - 키보드 스킬 5초 쿨타임 구현
 - 스킬 아이콘 및 쿨타임 UI 구현
 - 단검 / 바람 / 방패 / 돌진 스킬 구현
-- 스킬 피해를 팀원 `EnemyHealth`와 연결
+- 스킬 피해를 `EnemyHealth`와 연결
 - 보스 공격 / 사망 동작 보정
 - 보스 조우 BGM 전환 구현
 - STT latency(ms) 로그 구현
@@ -350,14 +364,13 @@ Whisper는 로컬 모델을 사용하므로 별도의 API Key가 필요하지 �
 - 불필요 코드 및 말풍선 관련 코드 제거
 - SkillExecutor 리팩토링
 - 통합 기능 테스트 진행
+- 통합 완료 이후 폴더 구조 정리
 
 ## 다음 예정
 
 - MERGE_CHECKLIST.md 최신화
 - FINAL_TEST_CHECKLIST.md 최신화
-- merge-teammate-project 브랜치 main 병합
-- main 기준 전체 테스트
-- 최종 폴더 구조 정리 여부 판단
+- main 기준 최종 테스트
 - 발표 / 제출용 최종 정리
 
 ---
