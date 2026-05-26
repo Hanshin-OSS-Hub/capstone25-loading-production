@@ -5,7 +5,7 @@ public class SkillCommandParser : MonoBehaviour
 {
     [Header("Recognition Settings")]
     [SerializeField, Range(0.5f, 1.0f)]
-    private float similarityThreshold = 0.75f;
+    private float similarityThreshold = 0.55f;
 
     private readonly Dictionary<SkillId, string> standardCommands = new()
     {
@@ -19,8 +19,8 @@ public class SkillCommandParser : MonoBehaviour
     {
         { SkillId.Blade, new[] { "단검", "단거", "단건", "단겸", "당검" } },
         { SkillId.Storm, new[] { "바람", "바란", "바랑", "파람", "바룸" } },
-        { SkillId.Barrier, new[] { "방패", "방페", "방베", "반패" } },
-        { SkillId.Dash, new[] { "돌진", "돌지", "도진", "돌징" } }
+        { SkillId.Barrier, new[] { "방패", "방페", "방베", "반패", "방대" } },
+        { SkillId.Dash, new[] { "돌진", "돌지", "도진", "돌징", "볼진", "들지", "벌진", "불진", "덜진", "둘진" } }
     };
 
     public SkillId Parse(string recognizedText)
