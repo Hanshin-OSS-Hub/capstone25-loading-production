@@ -19,6 +19,8 @@ public class SkillCoordinator : MonoBehaviour
     [SerializeField] private PlayerHealth playerHealth;
 
     private bool _isProcessing;
+    private float _skillPressedTime;
+    private float _skillReleasedTime;
 
     private bool IsPlayerDead()
     {
@@ -77,6 +79,8 @@ public class SkillCoordinator : MonoBehaviour
             return;
         }
 
+        _skillPressedTime = Time.realtimeSinceStartup;
+
         var result = sttService.StartRecording();
 
         if (!result.IsSuccess)
@@ -120,6 +124,7 @@ public class SkillCoordinator : MonoBehaviour
         }
 
         _isProcessing = true;
+        _skillReleasedTime = Time.realtimeSinceStartup;
 
         try
         {
@@ -165,6 +170,8 @@ public class SkillCoordinator : MonoBehaviour
                 return;
             }
 
+            LogSkillLatency(skillId);
+
             if (skillResultView != null)
                 skillResultView.ShowSkillActivated(skillId);
 
@@ -178,6 +185,20 @@ public class SkillCoordinator : MonoBehaviour
         {
             _isProcessing = false;
         }
+    }
+
+    private void LogSkillLatency(SkillId skillId)
+    {
+        float castTime = Time.realtimeSinceStartup;
+
+        float pressToCastMs = (castTime - _skillPressedTime) * 1000f;
+        float releaseToCastMs = (castTime - _skillReleasedTime) * 1000f;
+
+        string skillName = SkillNameProvider.GetKoreanName(skillId);
+
+        ProjectLogger.STT(
+            $"[STT Latency] {skillName} | R Press → Skill Cast: {pressToCastMs:F0} ms, R Release → Skill Cast: {releaseToCastMs:F0} ms"
+        );
     }
 
     private void HandleSkillCanceled()
