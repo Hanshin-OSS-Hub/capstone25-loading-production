@@ -272,8 +272,11 @@ public class EnemyMovement : MonoBehaviour
     public void Die()
     {
         if (isDead) return;
+
         isDead = true;
         isAttacking = false;
+
+        StopAllCoroutines();
 
         // 체력바 UI 즉시 비활성화
         if (Enemy_HP_Slider != null)
@@ -281,27 +284,39 @@ public class EnemyMovement : MonoBehaviour
             Enemy_HP_Slider.gameObject.SetActive(false);
         }
 
-        // 네비게이션 정지 및 컴포넌트 비활성화
+        // 네비게이션 즉시 정지 및 비활성화
         if (agent != null)
         {
-            agent.ResetPath();
-            agent.isStopped = true;
-            agent.enabled = false; 
+            if (agent.enabled)
+            {
+                agent.ResetPath();
+                agent.velocity = Vector3.zero;
+                agent.isStopped = true;
+            }
+
+            agent.enabled = false;
         }
 
-        // 메인 콜라이더 비활성화로 시체 하강 공간 확보
+        // 콜라이더 비활성화
         Collider mainCollider = GetComponent<Collider>();
         if (mainCollider != null)
         {
             mainCollider.enabled = false;
         }
 
-        // 사망 애니메이션 재생 및 루트 모션 적용 (공중 고정 버그 차단)
+        // 공격/이동 애니메이션을 끊고 즉시 사망 애니메이션으로 전환
         if (animator != null)
         {
-            animator.applyRootMotion = true; 
-            animator.SetTrigger(deadHash); 
+            animator.applyRootMotion = true;
+
+            animator.ResetTrigger("Skill");
+            animator.ResetTrigger("Triple");
+            animator.ResetTrigger("Dead");
+
             animator.SetFloat(speedHash, 0f);
+
+            // 현재 공격 모션이 끝나기를 기다리지 않고 즉시 Dead 상태로 보냄
+            animator.CrossFade("Dead", 0.05f, 0, 0f);
         }
     }
 }
