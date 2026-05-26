@@ -1,16 +1,28 @@
 # 최종 기능 테스트 결과 기록표
 
-이 문서는 `stt-skill-game` 프로젝트의 최종 통합 씬 기능 테스트 항목을 기록하기 위한 체크리스트입니다.
+이 문서는 `stt-skill-game` 프로젝트의 최종 메인 씬 기능 테스트 항목을 기록하기 위한 체크리스트입니다.
 
 테스트 기준:
 
 ```text
 Unity 2022.3.62f3
-FinMergeScene
+MainGame
 Whisper Local STT
 팀원 제공 AoF 씬 기반 전투 시스템
 STT 기반 음성 스킬 입력 + 키보드 스킬 입력
 스킬 쿨타임 UI + BGM 전환 + STT latency 로그
+```
+
+최종 실행 씬:
+
+```text
+Assets/Scenes/MainGame.unity
+```
+
+이전 테스트 씬과 팀원 원본 씬은 아래에 보관합니다.
+
+```text
+Assets/Scenes/Archive/
 ```
 
 ---
@@ -18,7 +30,7 @@ STT 기반 음성 스킬 입력 + 키보드 스킬 입력
 # 1. 씬 / Unity 기본 상태
 
 ```text
-[ ] FinMergeScene 정상 로드
+[ ] MainGame 정상 로드
 [ ] Play 실행 가능
 [ ] Console 빨간 에러 없음
 [ ] Missing Script 없음
@@ -26,6 +38,7 @@ STT 기반 음성 스킬 입력 + 키보드 스킬 입력
 [ ] MissingReferenceException 없음
 [ ] Animator Parameter 경고 없음
 [ ] Input System 오류 없음
+[ ] Archive 씬이 아니라 MainGame을 기준으로 테스트 중인지 확인
 ```
 
 ---
@@ -44,7 +57,7 @@ STT 기반 음성 스킬 입력 + 키보드 스킬 입력
 
 ---
 
-# 3. 팀원 전투 시스템 / 보스
+# 3. 보스 전투 시스템
 
 ```text
 [ ] 보스 몬스터 크기 2배 정상
@@ -229,7 +242,22 @@ STT 기반 음성 스킬 입력 + 키보드 스킬 입력
 
 ---
 
-# 13. 최종 Console 확인
+# 13. 폴더 구조 / 참조 확인
+
+```text
+[ ] 최종 씬은 Assets/Scenes/MainGame.unity 기준
+[ ] 이전 테스트 씬은 Assets/Scenes/Archive/에 보관
+[ ] 전투 스크립트는 Assets/Scripts/Combat/ 기준
+[ ] 사운드 파일은 Assets/Sounds/ 기준
+[ ] URP / 렌더링 설정은 Assets/Settings/ 기준
+[ ] 프리팹 / 머티리얼 / 텍스처 참조 누락 없음
+[ ] 스킬 UI 이미지 정상 표시
+[ ] BGM / SFX 참조 정상
+```
+
+---
+
+# 14. 최종 Console 확인
 
 ```text
 [ ] Console 빨간 에러 없음
@@ -257,9 +285,9 @@ STT Latency 로그
 아래 조건을 만족하면 최종 기능 테스트 통과로 봅니다.
 
 ```text
-FinMergeScene 정상 로드
+MainGame 정상 로드
 이동 / 카메라 정상
-팀원 보스 전투 정상
+보스 전투 정상
 키보드 스킬 정상
 키보드 스킬 쿨타임 UI 정상
 음성 스킬 정상
@@ -269,6 +297,7 @@ STT latency 로그 정상
 UI 앵커 / 배치 정상
 Player 사망 처리 정상
 Hit Stop / Camera Shake 정상
+폴더 구조와 참조 정상
 Console 빨간 에러 없음
 Missing Script 없음
 ```
