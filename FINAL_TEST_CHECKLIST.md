@@ -30,15 +30,15 @@ Assets/Scenes/Archive/
 # 1. 씬 / Unity 기본 상태
 
 ```text
-[ ] MainGame 정상 로드
-[ ] Play 실행 가능
-[ ] Console 빨간 에러 없음
-[ ] Missing Script 없음
-[ ] NullReferenceException 없음
-[ ] MissingReferenceException 없음
-[ ] Animator Parameter 경고 없음
-[ ] Input System 오류 없음
-[ ] Archive 씬이 아니라 MainGame을 기준으로 테스트 중인지 확인
+[ v ] MainGame 정상 로드
+[ v ] Play 실행 가능
+[ v ] Console 빨간 에러 없음
+[ v ] Missing Script 없음
+[ v ] NullReferenceException 없음
+[ v ] MissingReferenceException 없음
+[ v ] Animator Parameter 경고 없음
+[ v ] Input System 오류 없음
+[ v ] Archive 씬이 아니라 MainGame을 기준으로 테스트 중인지 확인
 ```
 
 ---
@@ -46,13 +46,13 @@ Assets/Scenes/Archive/
 # 2. 이동 / 카메라
 
 ```text
-[ ] WASD 이동 정상
-[ ] Shift 달리기 정상
-[ ] Space 점프 정상
-[ ] 마우스 카메라 회전 정상
-[ ] 플레이어가 바닥 아래로 떨어지지 않음
-[ ] 카메라가 과하게 튀지 않음
-[ ] 사망 전까지 이동 입력 정상
+[ v ] WASD 이동 정상
+[ v ] Shift 달리기 정상
+[ v ] Space 점프 정상
+[ v ] 마우스 카메라 회전 정상
+[ v ] 플레이어가 바닥 아래로 떨어지지 않음
+[ v ] 카메라가 과하게 튀지 않음
+[ v ] 사망 전까지 이동 입력 정상
 ```
 
 ---
@@ -60,16 +60,16 @@ Assets/Scenes/Archive/
 # 3. 보스 전투 시스템
 
 ```text
-[ ] 보스 몬스터 크기 2배 정상
-[ ] 보스가 플레이어를 감지함
-[ ] 보스가 플레이어를 추격함
-[ ] 보스가 공격 사거리 안에서 멈춤
-[ ] 보스가 플레이어를 바라보고 공격함
-[ ] 공격 후 다시 추격 가능
-[ ] 보스 HP UI 표시 정상
-[ ] 보스 피격 로그 정상 출력
-[ ] 보스 공격 중 사망 시 공격 모션을 끊고 즉시 사망 모션으로 전환
-[ ] 보스 사망 후 다시 서 있지 않음
+[ v ] 보스 몬스터 크기 2배 정상
+[ v ] 보스가 플레이어를 감지함
+[ v ] 보스가 플레이어를 추격함
+[ v ] 보스가 공격 사거리 안에서 멈춤
+[ v ] 보스가 플레이어를 바라보고 공격함
+[ v ] 공격 후 다시 추격 가능
+[ v ] 보스 HP UI 표시 정상
+[ v ] 보스 피격 로그 정상 출력
+[ v ] 보스 공격 중 사망 시 공격 모션을 끊고 즉시 사망 모션으로 전환
+[ v ] 보스 사망 후 다시 서 있지 않음
 ```
 
 ---
@@ -77,10 +77,10 @@ Assets/Scenes/Archive/
 # 4. 키보드 스킬 입력
 
 ```text
-[ ] Z 단검 정상
-[ ] X 바람 정상
-[ ] C 방패 정상
-[ ] V 돌진 정상
+[ v ] Z 단검 정상
+[ v ] X 바람 정상
+[ v ] C 방패 정상
+[ v ] V 돌진 정상
 ```
 
 ---
@@ -90,45 +90,44 @@ Assets/Scenes/Archive/
 ## 5-1. 단검
 
 ```text
-[ ] 단검 4개가 좌상 / 우상 / 좌하 / 우하 위치에서 발사됨
-[ ] 단검이 카메라 조준 방향으로 발사됨
-[ ] 여러 단검이 같은 Enemy에 맞아도 1회만 피해 적용
-[ ] 단검 피해량 3 적용
-[ ] Enemy HP 감소
-[ ] Enemy 피격 로그 출력
+[ v ] 단검 4개가 좌상 / 우상 / 좌하 / 우하 위치에서 발사됨
+[ v ] 단검이 카메라 조준 방향으로 발사됨
+[ v ] 여러 단검이 같은 Enemy에 맞아도 1회만 피해 적용
+[ v ] 단검 피해량 3 적용
+[ v ] Enemy HP 감소
+[ v ] Enemy 피격 로그 출력
 ```
 
 ## 5-2. 바람
 
 ```text
-[ ] 바람이 조준 방향 앞쪽에 생성됨
-[ ] 바람 최소 높이 정상
-[ ] 바람이 원형 구체 형태로 보임
-[ ] Enemy가 바람 중심으로 약간 끌려감
-[ ] 바람이 0.3초마다 1 피해 적용
-[ ] Enemy HP 감소
-[ ] Enemy 피격 로그 출력
+[ v ] 바람이 조준 방향 앞쪽에 생성됨
+[ v ] 바람 최소 높이 정상
+[ v ] 바람이 원형 구체 형태로 보임
+[ v ] Enemy가 바람 중심으로 약간 끌려감
+[ v ] 바람이 0.3초마다 1 피해 적용
+[ v ] Enemy HP 감소
+[ v ] Enemy 피격 로그 출력
 ```
 
 ## 5-3. 방패
 
 ```text
-[ ] 방패가 플레이어 앞에 수평 생성됨
-[ ] 방패가 Enemy 이동을 막음
-[ ] Enemy가 방패를 통과하지 못함
-[ ] 방패가 일정 시간 후 사라짐
-[ ] 방패 사라진 뒤 Enemy 이동 정상
+[ v ] 방패가 플레이어 앞에 수평 생성됨
+[ v ] 방패가 Enemy 이동을 막음
+[ v ] Enemy가 방패를 통과하지 못함
+[ v ] 방패가 일정 시간 후 사라짐
+[ v ] 방패 사라진 뒤 Enemy 이동 정상
 ```
 
 ## 5-4. 돌진
 
 ```text
-[ ] 돌진 방향 정상
-[ ] 돌진 수평 이동 정상
-[ ] 돌진 꼬리 표시
-[ ] 돌진 이펙트 표시
-[ ] 돌진 충돌 피해 없음
-[ ] 돌진 후 이동 정상 복귀
+[ v ] 돌진 방향 정상
+[ v ] 돌진 수평 이동 정상
+[ v ] 돌진 이펙트 표시
+[ v ] 돌진 충돌 피해 없음
+[ v ] 돌진 후 이동 정상 복귀
 ```
 
 ---
@@ -136,20 +135,20 @@ Assets/Scenes/Archive/
 # 6. 키보드 스킬 쿨타임 / 아이콘 UI
 
 ```text
-[ ] SkillGuideGroup이 왼쪽 하단에 잘 배치됨
-[ ] 텍스트 UI 하단에 스킬 아이콘 4개가 가로로 배치됨
-[ ] Z/X/C/V 아이콘 순서가 맞음
-[ ] 아이콘 크기가 적당함
-[ ] Z 사용 후 단검 아이콘 쿨타임 표시
-[ ] X 사용 후 바람 아이콘 쿨타임 표시
-[ ] C 사용 후 방패 아이콘 쿨타임 표시
-[ ] V 사용 후 돌진 아이콘 쿨타임 표시
-[ ] 쿨타임 중 어두운 오버레이 표시
-[ ] 쿨타임 숫자 표시
-[ ] 5초 후 오버레이 / 숫자 사라짐
-[ ] 쿨타임 중 같은 키 재입력 시 스킬 발동 안 됨
-[ ] 쿨타임 중 안내 UI 출력
-[ ] 각 스킬 쿨타임이 독립적으로 적용됨
+[ v ] SkillGuideGroup이 왼쪽 하단에 잘 배치됨
+[ v ] 텍스트 UI 하단에 스킬 아이콘 4개가 가로로 배치됨
+[ v ] Z/X/C/V 아이콘 순서가 맞음
+[ v ] 아이콘 크기가 적당함
+[ v ] Z 사용 후 단검 아이콘 쿨타임 표시
+[ v ] X 사용 후 바람 아이콘 쿨타임 표시
+[ v ] C 사용 후 방패 아이콘 쿨타임 표시
+[ v ] V 사용 후 돌진 아이콘 쿨타임 표시
+[ v ] 쿨타임 중 어두운 오버레이 표시
+[ v ] 쿨타임 숫자 표시
+[ v ] 5초 후 오버레이 / 숫자 사라짐
+[ v ] 쿨타임 중 같은 키 재입력 시 스킬 발동 안 됨
+[ v ] 쿨타임 중 안내 UI 출력
+[ v ] 각 스킬 쿨타임이 독립적으로 적용됨
 ```
 
 ---
@@ -157,16 +156,16 @@ Assets/Scenes/Archive/
 # 7. 음성 스킬 입력
 
 ```text
-[ ] R 누르고 말하기 가능
-[ ] R 떼면 STT 처리
-[ ] R 단검 정상
-[ ] R 바람 정상
-[ ] R 방패 정상
-[ ] R 돌진 정상
-[ ] R 짧은 입력 취소 정상
-[ ] 알 수 없는 음성 처리 정상
-[ ] 키보드 쿨타임 중이어도 R 음성 스킬은 발동
-[ ] R 음성 스킬 사용이 키보드 쿨타임을 새로 시작하지 않음
+[ v ] R 누르고 말하기 가능
+[ v ] R 떼면 STT 처리
+[ v ] R 단검 정상
+[ v ] R 바람 정상
+[ v ] R 방패 정상
+[ v ] R 돌진 정상
+[ v ] R 짧은 입력 취소 정상
+[ v ] 알 수 없는 음성 처리 정상
+[ v ] 키보드 쿨타임 중이어도 R 음성 스킬은 발동
+[ v ] R 음성 스킬 사용이 키보드 쿨타임을 새로 시작하지 않음
 ```
 
 ---
@@ -182,11 +181,11 @@ Assets/Scenes/Archive/
 체크:
 
 ```text
-[ ] R 단검 latency 로그 출력
-[ ] R 바람 latency 로그 출력
-[ ] R 방패 latency 로그 출력
-[ ] R 돌진 latency 로그 출력
-[ ] 실패 입력에서는 latency 로그가 출력되지 않아도 됨
+[ v ] R 단검 latency 로그 출력
+[ v ] R 바람 latency 로그 출력
+[ v ] R 방패 latency 로그 출력
+[ v ] R 돌진 latency 로그 출력
+[ v ] 실패 입력에서는 latency 로그가 출력되지 않아도 됨
 ```
 
 ---
@@ -194,11 +193,11 @@ Assets/Scenes/Archive/
 # 9. BGM 전환
 
 ```text
-[ ] 시작 시 평시 BGM 재생
-[ ] 보스에게 가까이 가면 전투 BGM 재생
-[ ] 전환 시 페이드가 자연스러움
-[ ] 보스에게서 멀어지면 평시 BGM 복귀
-[ ] 거리 경계에서 BGM이 계속 깜빡이며 바뀌지 않음
+[ v ] 시작 시 평시 BGM 재생
+[ v ] 보스에게 가까이 가면 전투 BGM 재생
+[ v ] 전환 시 페이드가 자연스러움
+[ v ] 보스에게서 멀어지면 평시 BGM 복귀
+[ v ] 거리 경계에서 BGM이 계속 깜빡이며 바뀌지 않음
 ```
 
 ---
@@ -206,11 +205,11 @@ Assets/Scenes/Archive/
 # 10. UI 앵커 / 배치
 
 ```text
-[ ] Enemy HP UI가 상단 중앙에 유지됨
-[ ] Player HP UI가 오른쪽 하단에 유지됨
-[ ] SkillGuideGroup이 왼쪽 하단에 유지됨
-[ ] 해상도 변경 시 UI 위치가 크게 틀어지지 않음
-[ ] UI끼리 겹치지 않음
+[ v ] Enemy HP UI가 상단 중앙에 유지됨
+[ v ] Player HP UI가 오른쪽 하단에 유지됨
+[ v ] SkillGuideGroup이 왼쪽 하단에 유지됨
+[ v ] 해상도 변경 시 UI 위치가 크게 틀어지지 않음
+[ v ] UI끼리 겹치지 않음
 ```
 
 ---
@@ -218,13 +217,13 @@ Assets/Scenes/Archive/
 # 11. 플레이어 사망 상태
 
 ```text
-[ ] Player HP 감소 정상
-[ ] Player HP가 0이 되면 사망 처리
-[ ] 사망 애니메이션 정상
-[ ] 사망 후 이동 불가
-[ ] 사망 후 Z/X/C/V 스킬 사용 불가
-[ ] 사망 후 R 길게 입력해도 스킬 사용 불가
-[ ] 사망 후 R 짧게 입력해도 사망 메시지 우선 출력
+[ v ] Player HP 감소 정상
+[ v ] Player HP가 0이 되면 사망 처리
+[ v ] 사망 애니메이션 정상
+[ v ] 사망 후 이동 불가
+[ v ] 사망 후 Z/X/C/V 스킬 사용 불가
+[ v ] 사망 후 R 길게 입력해도 스킬 사용 불가
+[ v ] 사망 후 R 짧게 입력해도 사망 메시지 우선 출력
 ```
 
 ---
@@ -232,12 +231,12 @@ Assets/Scenes/Archive/
 # 12. 피드백 / 결과 UI
 
 ```text
-[ ] SkillResultView 결과 UI 정상 표시
-[ ] 스킬 성공 메시지 정상
-[ ] 스킬 실패 메시지 정상
-[ ] STT 인식 결과 메시지 정상
-[ ] Hit Stop 정상
-[ ] Camera Shake 정상
+[ v ] SkillResultView 결과 UI 정상 표시
+[ v ] 스킬 성공 메시지 정상
+[ v ] 스킬 실패 메시지 정상
+[ v ] STT 인식 결과 메시지 정상
+[ v ] Hit Stop 정상
+[ v ] Camera Shake 정상
 ```
 
 ---
@@ -245,14 +244,14 @@ Assets/Scenes/Archive/
 # 13. 폴더 구조 / 참조 확인
 
 ```text
-[ ] 최종 씬은 Assets/Scenes/MainGame.unity 기준
-[ ] 이전 테스트 씬은 Assets/Scenes/Archive/에 보관
-[ ] 전투 스크립트는 Assets/Scripts/Combat/ 기준
-[ ] 사운드 파일은 Assets/Sounds/ 기준
-[ ] URP / 렌더링 설정은 Assets/Settings/ 기준
-[ ] 프리팹 / 머티리얼 / 텍스처 참조 누락 없음
-[ ] 스킬 UI 이미지 정상 표시
-[ ] BGM / SFX 참조 정상
+[ v ] 최종 씬은 Assets/Scenes/MainGame.unity 기준
+[ v ] 이전 테스트 씬은 Assets/Scenes/Archive/에 보관
+[ v ] 전투 스크립트는 Assets/Scripts/Combat/ 기준
+[ v ] 사운드 파일은 Assets/Sounds/ 기준
+[ v ] URP / 렌더링 설정은 Assets/Settings/ 기준
+[ v ] 프리팹 / 머티리얼 / 텍스처 참조 누락 없음
+[ v ] 스킬 UI 이미지 정상 표시
+[ v ] BGM / SFX 참조 정상
 ```
 
 ---
@@ -260,12 +259,12 @@ Assets/Scenes/Archive/
 # 14. 최종 Console 확인
 
 ```text
-[ ] Console 빨간 에러 없음
-[ ] NullReferenceException 없음
-[ ] MissingReferenceException 없음
-[ ] Missing Script 없음
-[ ] Animator Parameter 경고 없음
-[ ] Input System 오류 없음
+[ v ] Console 빨간 에러 없음
+[ v ] NullReferenceException 없음
+[ v ] MissingReferenceException 없음
+[ v ] Missing Script 없음
+[ v ] Animator Parameter 경고 없음
+[ v ] Input System 오류 없음
 ```
 
 허용 가능한 의도된 로그:

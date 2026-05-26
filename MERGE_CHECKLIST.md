@@ -32,10 +32,10 @@ Unity 2022.3.62f3
 확인:
 
 ```text
-[ ] Unity 2022.3.62f3 또는 같은 2022.3 LTS 계열 사용
-[ ] Unity Console 빨간 에러 없음
-[ ] Missing Script 없음
-[ ] Git working tree clean 상태 확인
+[ v ] Unity 2022.3.62f3 또는 같은 2022.3 LTS 계열 사용
+[ v ] Unity Console 빨간 에러 없음
+[ v ] Missing Script 없음
+[ v ] Git working tree clean 상태 확인
 ```
 
 ---
@@ -57,12 +57,12 @@ Assets/Scenes/Archive/
 체크:
 
 ```text
-[ ] MainGame 정상 로드
-[ ] Play 실행 가능
-[ ] Console 빨간 에러 없음
-[ ] Missing Script 없음
-[ ] 보스 / 플레이어 / UI / BGM / STT 스킬 정상 동작
-[ ] Archive 씬은 최종 실행 씬이 아니라 보관용임을 확인
+[ v ] MainGame 정상 로드
+[ v ] Play 실행 가능
+[ v ] Console 빨간 에러 없음
+[ v ] Missing Script 없음
+[ v ] 보스 / 플레이어 / UI / BGM / STT 스킬 정상 동작
+[ v ] Archive 씬은 최종 실행 씬이 아니라 보관용임을 확인
 ```
 
 ---
@@ -130,10 +130,10 @@ UI/SkillCooldownIconView.cs
 체크:
 
 ```text
-[ ] 위 스크립트 폴더 전체 포함
-[ ] .meta 파일과 함께 관리됨
-[ ] 파일명과 클래스명 일치
-[ ] Console 컴파일 에러 없음
+[ v ] 위 스크립트 폴더 전체 포함
+[ v ] .meta 파일과 함께 관리됨
+[ v ] 파일명과 클래스명 일치
+[ v ] Console 컴파일 에러 없음
 ```
 
 ---
@@ -158,13 +158,13 @@ Assets/Prefabs/Meshy_AI_Rugged_Drifter_biped/
 체크:
 
 ```text
-[ ] Blade 프리팹 포함
-[ ] Storm 프리팹 포함
-[ ] Barrier 프리팹 포함
-[ ] Player / Boss 관련 프리팹 포함
-[ ] Material / Texture / VFX 참조 누락 없음
-[ ] Missing Script 없음
-[ ] 방패 프리팹의 Enemy 차단 동작 정상
+[ v ] Blade 프리팹 포함
+[ v ] Storm 프리팹 포함
+[ v ] Barrier 프리팹 포함
+[ v ] Player / Boss 관련 프리팹 포함
+[ v ] Material / Texture / VFX 참조 누락 없음
+[ v ] Missing Script 없음
+[ v ] 방패 프리팹의 Enemy 차단 동작 정상
 ```
 
 ---
@@ -193,11 +193,11 @@ Assets/Textures/dash_UI.png
 체크:
 
 ```text
-[ ] 스킬 프리팹에 연결된 Material 포함
-[ ] 캐릭터 / 보스 Material / Texture 포함
-[ ] 스킬 UI 이미지 포함
-[ ] VFX 관련 Material / Animator / Texture 포함
-[ ] 프리팹이 분홍색으로 깨지지 않음
+[ v ] 스킬 프리팹에 연결된 Material 포함
+[ v ] 캐릭터 / 보스 Material / Texture 포함
+[ v ] 스킬 UI 이미지 포함
+[ v ] VFX 관련 Material / Animator / Texture 포함
+[ v ] 프리팹이 분홍색으로 깨지지 않음
 ```
 
 ---
@@ -217,14 +217,14 @@ Enemy_HP_Slider
 체크:
 
 ```text
-[ ] SkillHUDCanvas 존재
-[ ] SkillResultView 연결
-[ ] SkillGuideGroup 왼쪽 하단 배치
-[ ] 스킬 아이콘 4개 표시
-[ ] 쿨타임 오버레이 / 숫자 표시
-[ ] Player_HP_Slider 오른쪽 하단 앵커
-[ ] Enemy_HP_Slider 상단 중앙 앵커
-[ ] UI가 해상도 변경 시 크게 틀어지지 않음
+[ v ] SkillHUDCanvas 존재
+[ v ] SkillResultView 연결
+[ v ] SkillGuideGroup 왼쪽 하단 배치
+[ v ] 스킬 아이콘 4개 표시
+[ v ] 쿨타임 오버레이 / 숫자 표시
+[ v ] Player_HP_Slider 오른쪽 하단 앵커
+[ v ] Enemy_HP_Slider 상단 중앙 앵커
+[ v ] UI가 해상도 변경 시 크게 틀어지지 않음
 ```
 
 ---
@@ -252,13 +252,13 @@ Assets/Sounds/wind.wav
 체크:
 
 ```text
-[ ] AudioManager 존재
-[ ] BgmController 연결
-[ ] 평시 BGM 연결
-[ ] 전투 BGM 연결
-[ ] 보스 조우 시 전투 BGM 전환
-[ ] 보스와 멀어지면 평시 BGM 복귀
-[ ] 스킬 효과음이 필요한 위치에 정상 연결됨
+[ v ] AudioManager 존재
+[ v ] BgmController 연결
+[ v ] 평시 BGM 연결
+[ v ] 전투 BGM 연결
+[ v ] 보스 조우 시 전투 BGM 전환
+[ v ] 보스와 멀어지면 평시 BGM 복귀
+[ v ] 스킬 효과음이 필요한 위치에 정상 연결됨
 ```
 
 ---
@@ -274,9 +274,9 @@ Assets/Settings/
 체크:
 
 ```text
-[ ] Project Settings > Graphics에서 URP 설정 정상
-[ ] Project Settings > Quality에서 URP 설정 정상
-[ ] 씬 / 프리팹 머티리얼이 분홍색으로 깨지지 않음
+[ v ] Project Settings > Graphics에서 URP 설정 정상
+[ v ] Project Settings > Quality에서 URP 설정 정상
+[ v ] 씬 / 프리팹 머티리얼이 분홍색으로 깨지지 않음
 ```
 
 ---
@@ -300,10 +300,10 @@ Assets/StreamingAssets/ggml-base.bin
 체크:
 
 ```text
-[ ] StreamingAssets 폴더 존재
-[ ] Whisper 모델 .bin 파일 직접 추가
-[ ] .gitignore에서 *.bin 제외 유지
-[ ] STT 실행 시 모델 로딩 오류 없음
+[ v ] StreamingAssets 폴더 존재
+[ v ] Whisper 모델 .bin 파일 직접 추가
+[ v ] .gitignore에서 *.bin 제외 유지
+[ v ] STT 실행 시 모델 로딩 오류 없음
 ```
 
 ---
@@ -411,9 +411,9 @@ SkillCoordinator → PlayerHealth
 확인:
 
 ```text
-[ ] R 입력 성공 시 STT latency(ms) 로그 출력
-[ ] 플레이어 사망 시 R 입력 차단
-[ ] 짧은 R 입력 취소 처리 정상
+[ v ] R 입력 성공 시 STT latency(ms) 로그 출력
+[ v ] 플레이어 사망 시 R 입력 차단
+[ v ] 짧은 R 입력 취소 처리 정상
 ```
 
 ---
@@ -505,12 +505,12 @@ Collider
 확인:
 
 ```text
-[ ] 보스 크기 2배 적용
-[ ] 추격 정상
-[ ] 공격 사거리 진입 시 멈춰서 공격
-[ ] 공격 중 사망 시 즉시 사망 모션 전환
-[ ] EnemyHealth가 스킬 피해를 받음
-[ ] Enemy HP Slider 연결
+[ v ] 보스 크기 2배 적용
+[ v ] 추격 정상
+[ v ] 공격 사거리 진입 시 멈춰서 공격
+[ v ] 공격 중 사망 시 즉시 사망 모션 전환
+[ v ] EnemyHealth가 스킬 피해를 받음
+[ v ] Enemy HP Slider 연결
 ```
 
 ---
@@ -534,10 +534,10 @@ Collider
 확인:
 
 ```text
-[ ] R 키가 다른 기능과 충돌하지 않음
-[ ] Z/X/C/V 키가 다른 기능과 충돌하지 않음
-[ ] 마우스 카메라 제어가 정상 동작
-[ ] Cursor Lock 처리 방식 정상
+[ v ] R 키가 다른 기능과 충돌하지 않음
+[ v ] Z/X/C/V 키가 다른 기능과 충돌하지 않음
+[ v ] 마우스 카메라 제어가 정상 동작
+[ v ] Cursor Lock 처리 방식 정상
 ```
 
 ---
@@ -563,9 +563,9 @@ config.json
 체크:
 
 ```text
-[ ] LLM/무닌 관련 구버전 코드가 다시 들어오지 않음
-[ ] 말풍선 UI가 필요하지 않다면 SpeechBubble 계열 재도입 금지
-[ ] config.json / API Key 구조 재도입 여부 확인
+[ v ] LLM/무닌 관련 구버전 코드가 다시 들어오지 않음
+[ v ] 말풍선 UI가 필요하지 않다면 SpeechBubble 계열 재도입 금지
+[ v ] config.json / API Key 구조 재도입 여부 확인
 ```
 
 ---
@@ -575,87 +575,87 @@ config.json
 ## 8-1. 이동 / 카메라
 
 ```text
-[ ] WASD 이동 정상
-[ ] Shift 달리기 정상
-[ ] Space 점프 정상
-[ ] 마우스 카메라 회전 정상
-[ ] 플레이어가 바닥 아래로 떨어지지 않음
+[ v ] WASD 이동 정상
+[ v ] Shift 달리기 정상
+[ v ] Space 점프 정상
+[ v ] 마우스 카메라 회전 정상
+[ v ] 플레이어가 바닥 아래로 떨어지지 않음
 ```
 
 ## 8-2. 보스 전투 시스템
 
 ```text
-[ ] 보스 크기 2배 정상
-[ ] 보스가 플레이어를 감지함
-[ ] 보스가 플레이어를 추격함
-[ ] 보스가 공격 사거리에서 멈춰 공격함
-[ ] 보스가 플레이어를 바라보고 공격함
-[ ] 보스 공격 중 사망 시 즉시 사망 모션으로 전환
-[ ] 보스 HP UI 정상
-[ ] 보스 피격 로그 정상 출력
+[ v ] 보스 크기 2배 정상
+[ v ] 보스가 플레이어를 감지함
+[ v ] 보스가 플레이어를 추격함
+[ v ] 보스가 공격 사거리에서 멈춰 공격함
+[ v ] 보스가 플레이어를 바라보고 공격함
+[ v ] 보스 공격 중 사망 시 즉시 사망 모션으로 전환
+[ v ] 보스 HP UI 정상
+[ v ] 보스 피격 로그 정상 출력
 ```
 
 ## 8-3. 키보드 스킬
 
 ```text
-[ ] Z 단검 정상
-[ ] X 바람 정상
-[ ] C 방패 정상
-[ ] V 돌진 정상
-[ ] 단검 4개가 좌상 / 우상 / 좌하 / 우하 위치에서 발사됨
-[ ] 단검은 같은 적에게 1회만 피해 적용
-[ ] 바람은 적을 중심으로 약간 끌어당김
-[ ] 바람은 0.3초마다 1 피해 적용
-[ ] 방패가 보스 이동을 차단함
-[ ] 돌진 꼬리 / 이펙트 정상
+[ v ] Z 단검 정상
+[ v ] X 바람 정상
+[ v ] C 방패 정상
+[ v ] V 돌진 정상
+[ v ] 단검 4개가 좌상 / 우상 / 좌하 / 우하 위치에서 발사됨
+[ v ] 단검은 같은 적에게 1회만 피해 적용
+[ v ] 바람은 적을 중심으로 약간 끌어당김
+[ v ] 바람은 0.3초마다 1 피해 적용
+[ v ] 방패가 보스 이동을 차단함
+[ v ] 돌진 이펙트 정상
 ```
 
 ## 8-4. 키보드 쿨타임 / UI
 
 ```text
-[ ] Z/X/C/V 각각 5초 쿨타임 적용
-[ ] 스킬별 쿨타임 독립 적용
-[ ] 쿨타임 중 같은 키 재입력 시 스킬 발동 안 됨
-[ ] 쿨타임 중 안내 UI 출력
-[ ] 스킬 아이콘 어두운 오버레이 표시
-[ ] 쿨타임 숫자 표시
-[ ] 5초 후 오버레이 / 숫자 사라짐
+[ v ] Z/X/C/V 각각 5초 쿨타임 적용
+[ v ] 스킬별 쿨타임 독립 적용
+[ v ] 쿨타임 중 같은 키 재입력 시 스킬 발동 안 됨
+[ v ] 쿨타임 중 안내 UI 출력
+[ v ] 스킬 아이콘 어두운 오버레이 표시
+[ v ] 쿨타임 숫자 표시
+[ v ] 5초 후 오버레이 / 숫자 사라짐
 ```
 
 ## 8-5. 음성 스킬
 
 ```text
-[ ] R 누르고 말하기 가능
-[ ] R 떼면 STT 처리
-[ ] 단검 / 바람 / 방패 / 돌진 음성 인식 가능
-[ ] 음성 스킬은 키보드 쿨타임과 무관하게 발동
-[ ] 짧은 R 입력 취소 정상
-[ ] 알 수 없는 명령 실패 처리 정상
-[ ] STT latency(ms) 로그 출력
+[ v ] R 누르고 말하기 가능
+[ v ] R 떼면 STT 처리
+[ v ] 단검 / 바람 / 방패 / 돌진 음성 인식 가능
+[ v ] 음성 스킬은 키보드 쿨타임과 무관하게 발동
+[ v ] 짧은 R 입력 취소 정상
+[ v ] 알 수 없는 명령 실패 처리 정상
+[ v ] STT latency(ms) 로그 출력
 ```
 
 ## 8-6. BGM / UI / 사망 처리
 
 ```text
-[ ] 시작 시 평시 BGM 재생
-[ ] 보스 조우 시 전투 BGM 전환
-[ ] 보스와 멀어지면 평시 BGM 복귀
-[ ] Player HP UI 우측 하단 유지
-[ ] Enemy HP UI 상단 중앙 유지
-[ ] SkillGuideGroup 좌측 하단 유지
-[ ] Player 사망 후 이동 불가
-[ ] Player 사망 후 R/Z/X/C/V 스킬 입력 차단
+[ v ] 시작 시 평시 BGM 재생
+[ v ] 보스 조우 시 전투 BGM 전환
+[ v ] 보스와 멀어지면 평시 BGM 복귀
+[ v ] Player HP UI 우측 하단 유지
+[ v ] Enemy HP UI 상단 중앙 유지
+[ v ] SkillGuideGroup 좌측 하단 유지
+[ v ] Player 사망 후 이동 불가
+[ v ] Player 사망 후 R/Z/X/C/V 스킬 입력 차단
 ```
 
 ## 8-7. 최종 Console 확인
 
 ```text
-[ ] Console 빨간 에러 없음
-[ ] NullReferenceException 없음
-[ ] MissingReferenceException 없음
-[ ] Missing Script 없음
-[ ] Animator Parameter 경고 없음
-[ ] Input System 오류 없음
+[ v ] Console 빨간 에러 없음
+[ v ] NullReferenceException 없음
+[ v ] MissingReferenceException 없음
+[ v ] Missing Script 없음
+[ v ] Animator Parameter 경고 없음
+[ v ] Input System 오류 없음
 ```
 
 의도된 로그:
@@ -681,9 +681,9 @@ BGM 전환 관련 로그가 있다면 허용
 체크:
 
 ```text
-[ ] Main Camera에 CameraMovement 연결
-[ ] SkillExecutor Forward Reference가 Main Camera Transform을 가리킴
-[ ] SkillCameraShake가 CameraMovement를 참조함
+[ v ] Main Camera에 CameraMovement 연결
+[ v ] SkillExecutor Forward Reference가 Main Camera Transform을 가리킴
+[ v ] SkillCameraShake가 CameraMovement를 참조함
 ```
 
 ---
@@ -720,9 +720,9 @@ Assets/__Eric VFX Studio/
 주의:
 
 ```text
-[ ] Archive 씬은 최종 실행 씬이 아니지만 원본 / 테스트 보관용으로 유지
-[ ] Settings 폴더의 URP 관련 파일은 실제 참조 여부 확인 전 삭제 금지
-[ ] __Eric VFX Studio 폴더는 스킬 VFX 참조 가능성이 있으므로 삭제 금지
+[ v ] Archive 씬은 최종 실행 씬이 아니지만 원본 / 테스트 보관용으로 유지
+[ v ] Settings 폴더의 URP 관련 파일은 실제 참조 여부 확인 전 삭제 금지
+[ v ] __Eric VFX Studio 폴더는 스킬 VFX 참조 가능성이 있으므로 삭제 금지
 ```
 
 ---
@@ -732,20 +732,20 @@ Assets/__Eric VFX Studio/
 아래 조건을 만족하면 최종 정리 완료로 봅니다.
 
 ```text
-[ ] Unity Console 빨간 에러 없음
-[ ] Missing Script 없음
-[ ] MainGame 정상 로드
-[ ] 이동 / 카메라 정상
-[ ] 보스 전투 정상
-[ ] Z/X/C/V 키보드 스킬 정상
-[ ] 키보드 스킬 쿨타임 UI 정상
-[ ] R 음성 스킬 정상
-[ ] R 음성 스킬은 쿨타임 없이 동작
-[ ] STT latency 로그 정상
-[ ] 결과 UI 정상
-[ ] Hit Stop / Camera Shake 정상
-[ ] BGM 전환 정상
-[ ] Player 사망 처리 정상
-[ ] Whisper 모델 파일 로컬 배치 완료
-[ ] README / 체크리스트 문서가 현재 폴더 구조와 일치
+[ v ] Unity Console 빨간 에러 없음
+[ v ] Missing Script 없음
+[ v ] MainGame 정상 로드
+[ v ] 이동 / 카메라 정상
+[ v ] 보스 전투 정상
+[ v ] Z/X/C/V 키보드 스킬 정상
+[ v ] 키보드 스킬 쿨타임 UI 정상
+[ v ] R 음성 스킬 정상
+[ v ] R 음성 스킬은 쿨타임 없이 동작
+[ v ] STT latency 로그 정상
+[ v ] 결과 UI 정상
+[ v ] Hit Stop / Camera Shake 정상
+[ v ] BGM 전환 정상
+[ v ] Player 사망 처리 정상
+[ v ] Whisper 모델 파일 로컬 배치 완료
+[ v ] README / 체크리스트 문서가 현재 폴더 구조와 일치
 ```
