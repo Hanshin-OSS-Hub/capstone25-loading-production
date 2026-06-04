@@ -68,9 +68,6 @@ Assets/StreamingAssets/
 Assets/StreamingAssets/ggml-base.bin
 ```
 
-Whisper 모델 파일은 용량 문제로 GitHub에 포함하지 않으며, 실행 환경에서 직접 `Assets/StreamingAssets/`에 추가해야 합니다.
-
-
 4. Unity에서 아래 씬을 엽니다.
 
 ```text
@@ -262,3 +259,4 @@ Recordings/
 Assets/StreamingAssets/*.bin
 ```
 
+Whisper 모델 파일은 용량 문제로 GitHub에 포함하지 않으며, 실행 환경에서 직접 `Assets/StreamingAssets/`에 추가해야 합니다.
