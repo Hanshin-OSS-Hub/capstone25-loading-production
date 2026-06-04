@@ -11,7 +11,7 @@ Whisper API를 사용하여 한국어 음성 명령을 인식하고, 인식된 �
 
 사용자는 키보드와 마우스로 기본 이동 및 카메라 조작을 수행하고, R 키를 이용한 음성 입력 또는 Z / X / C / V 키보드 입력을 통해 스킬을 발동할 수 있습니다. 음성 명령은 Whisper API를 통해 텍스트로 변환되며, Alias 매핑과 Levenshtein Distance 기반 유사도 보정을 거쳐 게임 내 스킬 실행으로 연결됩니다.
 
-최종 구현물은 `MainGame` 씬을 기준으로 플레이어 이동, 보스 전투, 음성 스킬, 키보드 스킬 테스트, UI 피드백, BGM 전환이 함께 동작하는 Unity 3D 전투 게임 데모입니다.
+최종 구현물은 `MainGame` 씬을 기준으로 플레이어 이동, 보스 전투, 음성 스킬, 키보드 스킬, UI 피드백, BGM 전환이 함께 동작하는 Unity 3D 전투 게임 데모입니다.
 
 ### 주요 기능
 
@@ -67,6 +67,9 @@ Assets/StreamingAssets/
 ```text
 Assets/StreamingAssets/ggml-base.bin
 ```
+
+Whisper 모델 파일은 용량 문제로 GitHub에 포함하지 않으며, 실행 환경에서 직접 `Assets/StreamingAssets/`에 추가해야 합니다.
+
 
 4. Unity에서 아래 씬을 엽니다.
 
@@ -229,18 +232,18 @@ Whisper API를 한국어로 사용하기 때문에, 짧고 명확한 한국어 �
 ## 테스트 체크포인트
 
 ```text
-[ ] MainGame 정상 로드
-[ ] Console 빨간 에러 없음
-[ ] Missing Script 없음
-[ ] WASD / Shift / Space / Mouse 정상
-[ ] Z/X/C/V 키보드 스킬 정상
-[ ] 키보드 스킬 쿨타임 UI 정상
-[ ] R 음성 스킬 정상
-[ ] R 음성 스킬은 쿨타임 없이 동작
-[ ] STT latency 로그 출력
-[ ] 보스 추격 / 공격 / 피격 / 사망 정상
-[ ] 보스 조우 BGM 전환 정상
-[ ] Player 사망 후 이동 / 스킬 입력 차단 정상
+[ v ] MainGame 정상 로드
+[ v ] Console 빨간 에러 없음
+[ v ] Missing Script 없음
+[ v ] WASD / Shift / Space / Mouse 정상
+[ v ] Z/X/C/V 키보드 스킬 정상
+[ v ] 키보드 스킬 쿨타임 UI 정상
+[ v ] R 음성 스킬 정상
+[ v ] R 음성 스킬은 쿨타임 없이 동작
+[ v ] STT latency 로그 출력
+[ v ] 보스 추격 / 공격 / 피격 / 사망 정상
+[ v ] 보스 조우 BGM 전환 정상
+[ v ] Player 사망 후 이동 / 스킬 입력 차단 정상
 ```
 
 ---
@@ -259,4 +262,3 @@ Recordings/
 Assets/StreamingAssets/*.bin
 ```
 
-Whisper 모델 파일은 용량 문제로 GitHub에 포함하지 않으며, 실행 환경에서 직접 `Assets/StreamingAssets/`에 추가해야 합니다.
