@@ -8,7 +8,7 @@
 Unity 2022.3.62f3
 MainGame
 Whisper Local STT
-팀원 제공 AoF 씬 기반 전투 시스템
+AoF 씬 기반 전투 시스템
 STT 기반 음성 스킬 입력 + 키보드 스킬 입력
 스킬 쿨타임 UI + BGM 전환 + STT latency 로그
 ```
@@ -19,7 +19,7 @@ STT 기반 음성 스킬 입력 + 키보드 스킬 입력
 Assets/Scenes/MainGame.unity
 ```
 
-이전 테스트 씬과 팀원 원본 씬은 아래에 보관합니다.
+이전 테스트 씬은 아래에 보관합니다.
 
 ```text
 Assets/Scenes/Archive/

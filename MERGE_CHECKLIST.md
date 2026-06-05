@@ -1,11 +1,11 @@
 # 병합 / 최종 정리 체크리스트
 
-이 문서는 `stt-skill-game` 프로젝트가 팀원 씬 통합, `main` 병합, 폴더 구조 정리까지 완료된 뒤 최종 상태를 확인하기 위한 체크리스트입니다.
+이 문서는 `stt-skill-game` 프로젝트가 씬 통합, `main` 병합, 폴더 구조 정리까지 완료된 뒤 최종 상태를 확인하기 위한 체크리스트입니다.
 
 현재 프로젝트의 핵심 범위는 다음과 같습니다.
 
 ```text
-팀원 제공 AoF 씬 / 전투 시스템 기반 MainGame
+AoF 씬 / 전투 시스템 기반 MainGame
 + Whisper Local STT
 + 음성 명령 스킬 입력
 + 키보드 스킬 테스트
@@ -48,7 +48,7 @@ Unity 2022.3.62f3
 Assets/Scenes/MainGame.unity
 ```
 
-이전 테스트 씬과 팀원 원본 씬은 아래에 보관합니다.
+이전 테스트 씬은 아래에 보관합니다.
 
 ```text
 Assets/Scenes/Archive/
