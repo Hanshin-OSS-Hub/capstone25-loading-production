@@ -68,6 +68,13 @@ Assets/StreamingAssets/
 Assets/StreamingAssets/ggml-base.bin
 ```
 
+모델 파일은 저장소에 포함되어 있지 않으므로, 실행 전 아래 모델 파일 페이지에 접속하여 `ggml-base.bin`을 다운로드한 뒤 위 경로에 배치해야 합니다.
+
+- [https://huggingface.co/ggerganov/whisper.cpp/tree/main]
+
+> 모델 파일은 용량 문제로 GitHub 저장소에 포함하지 않습니다.  
+> 다운로드한 모델 파일의 사용 조건은 해당 배포처와 Whisper / whisper.cpp 계열 라이선스 정책을 따릅니다.
+
 4. Unity에서 아래 씬을 엽니다.
 
 ```text
